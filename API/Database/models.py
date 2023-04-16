@@ -1,10 +1,11 @@
 from sqlalchemy import create_engine,NVARCHAR, Column, Integer, String, DateTime, Boolean, ForeignKey
-from sqlalchemy.orm import validates, declarative_base, Mapped, relationship
+from typing import List
+from sqlalchemy.orm import validates, declarative_base, Mapped, relationship, mapped_column, Session
 from sqlalchemy.engine import URL
 import pyodbc
 #import connection
 CONNECTION_STRING = "Driver={ODBC Driver 17 for SQL Server};Server=SERAPHINE\\SQLEXPRESS;Database=CHATAPP;Trusted_Connection=Yes;MultipleActiveResultSets=true"
-#CONNECTION_STRING = "mssql+pyodbc://SERAPHINE\SQLEXPRESS/CHATAPP"
+
 connection_url = URL.create("mssql+pyodbc", query={"odbc_connect": CONNECTION_STRING})
 engine = create_engine(connection_url)
 Base = declarative_base()
@@ -19,44 +20,80 @@ class Register():
 
 class User(Base):
     __tablename__ = 'UserInfo'
-    id = Column('Id', NVARCHAR(450), primary_key= True)
-    userName = Column('UserName', String(50))
-    firstName = Column('FirstName', String(25))
-    lastName = Column('LastName', String(25))
-    email = Column('Email', String(100))
-    avatar = Column('Avatar', String(255))
-    phone = Column('Phone', String(11), nullable=True)
+    id = mapped_column('Id', NVARCHAR(450), primary_key= True)
+    userName = mapped_column('UserName', String(50))
+    firstName = mapped_column('FirstName', String(25))
+    lastName = mapped_column('LastName', String(25))
+    email = mapped_column('Email', String(100))
+    avatar = mapped_column('Avatar', String(255))
+    phone = mapped_column('Phone', String(11), nullable=True)
+    joinedGroup: Mapped[List["JoinedMember"]] = relationship(back_populates='member')
+    sended:Mapped[List["Message"]] = relationship(back_populates='sender')
+    createdGroup:Mapped[List["Group"]] = relationship(back_populates='creator')
+    requested:Mapped[List["JoinRequest"]] = relationship(back_populates="creator")
 
 class Group(Base):
     __tablename__ = 'Group'
-    id = Column('Id', NVARCHAR(450), primary_key=True)
-    groupName = Column('GroupName', String)
-    createdTime = Column('CreatedTime', DateTime)
-    creatorId = Column('CreatorId', String)
+    id = mapped_column('Id', NVARCHAR(450), primary_key=True)
+    groupName = mapped_column('GroupName', String)
+    createdTime = mapped_column('CreatedTime', DateTime)
+    creatorId = mapped_column('CreatorId', NVARCHAR(450), ForeignKey("UserInfo.Id"))
+    messages:Mapped[List["Message"]] = relationship(back_populates="group")
+    joined:Mapped[List["JoinedMember"]] = relationship(back_populates="group")
+    requested:Mapped[List["JoinRequest"]] = relationship(back_populates="group")
+    creator:Mapped[User] = relationship(back_populates='createdGroup')
 
 class JoinRequest(Base):
     __tablename__ = 'JoinRequest'
-    id = Column('Id', NVARCHAR(450), primary_key=True)
-    createdTime = Column('CreatedTime', DateTime)
-    creatorId = Column('CreatorId', String)
-    groupId = Column('GroupId', String)
-    accepted = Column('Accepted', Boolean)
+    id = mapped_column('Id', NVARCHAR(450), primary_key=True)
+    createdTime = mapped_column('CreatedTime', DateTime)
+    creatorId = mapped_column('CreatorId', NVARCHAR(450), ForeignKey("UserInfo.Id"))
+    groupId = mapped_column('GroupId', NVARCHAR(450), ForeignKey("Group.Id"))
+    accepted = mapped_column('Accepted', Boolean)
+    group:Mapped[Group] = relationship(back_populates='requested')
+    creator:Mapped[User] = relationship(back_populates='requested')
 
 class JoinedMember(Base):
     __tablename__ = 'JoinedMember'
-    id = Column('Id', NVARCHAR(450), primary_key=True)
-    groupId = Column('GroupId', String)
-    memberId = Column('MemberId', String)
-    joinedTime = Column('JoinedTime', DateTime)
-    role = Column('Role', Integer)
+    id = mapped_column('Id', NVARCHAR(450), primary_key=True)
+    groupId = mapped_column('GroupId', NVARCHAR(450), ForeignKey('Group.Id'))
+    memberId = mapped_column('MemberId', NVARCHAR(450), ForeignKey('UserInfo.Id'))
+    joinedTime = mapped_column('JoinedTime', DateTime)
+    role = mapped_column('Role', Integer)
+    group:Mapped[Group] = relationship(back_populates='joined')
+    member:Mapped[User] = relationship(back_populates='joinedGroup')
+    
 
 class Message(Base):
     __tablename__ = 'Message'
-    id = Column('Id', NVARCHAR(450), primary_key=True)
-    content = Column('Content', String(255))
-    createdTime = Column('CreatedTime', DateTime)
-    groupId = Column('GroupId', String)
-    senderId = Column('SenderId', String)
+    id = mapped_column('Id', NVARCHAR(450), primary_key=True)
+    content = mapped_column('Content', String(255))
+    createdTime = mapped_column('CreatedTime', DateTime)
+    groupId = mapped_column('GroupId', NVARCHAR(450),ForeignKey('Group.Id'))
+    senderId = mapped_column('SenderId', NVARCHAR(450), ForeignKey('UserInfo.Id'))
+    sender:Mapped[User] = relationship(back_populates="sended")
+    group:Mapped[Group] = relationship(back_populates="messages")
+#Authenticate Models
+class UserAuth(Base):
+    __tablename__ = 'UserAuth'
+    id = mapped_column('Id', NVARCHAR(450), primary_key=True)
+    email = mapped_column('Email', String, nullable=True)
+    userName = mapped_column('UserName', String)
+
+    isAuthenticated = mapped_column('ISAuthenticated', Boolean, nullable=True)
+class UserPassword(Base):
+    __tablename__ = 'UserPassword'
+    userId = mapped_column('UserId', NVARCHAR(450), ForeignKey('UserAuth.Id'), primary_key=True)
+    hashString = mapped_column('HashString', String)
+    saltString = mapped_column('SaltString', String)
+    encriptedValue = mapped_column('EncriptedValue', String)
+class Token(Base):
+    __tablename__ = "Token"
+    id = mapped_column('Id', NVARCHAR(450))
+    userId = mapped_column('UserId', NVARCHAR(450), ForeignKey('UserAuth.Id'), primary_key=True)
+    tokenValue = mapped_column('TokenValue', String)
+    createdTime = mapped_column('CreatedTime', DateTime)
+
 
 # if __name__ == '__main__':
 #     conn = pyodbc.connect(CONNECTION_STRING)
