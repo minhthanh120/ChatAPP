@@ -2,3 +2,4 @@ alembic
 sqlalchemy
 pyodbc
 pymssql
+fastapi
