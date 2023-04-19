@@ -3,3 +3,5 @@ sqlalchemy
 pyodbc
 pymssql
 fastapi
+uvicorn
+pydantic

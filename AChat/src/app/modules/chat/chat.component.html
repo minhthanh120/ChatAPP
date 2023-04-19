@@ -1,0 +1,126 @@
+<div class="h-screen flex flex-row">
+    <div class="flex flex-col border border-gray-800 rounded-lg w-3/12">
+        <div class="text-center py-9 border-b-2">
+            <div class="relative w-11/12 p-5">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-8 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 " fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <input type="text" id="voice-search"
+                    class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 "
+                    placeholder="Tìm kiếm người dùng" required>
+                <button type="button" class="absolute inset-y-0 right-0 flex items-center pr-3">
+
+                </button>
+            </div>
+        </div>
+        <div class="flex flex-col overflow-y-auto">
+
+            <ul class="max-w-md divide-y divide-gray-200 " id="result">
+                <li class="pb-3 sm:pb-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
+                                alt="Neil image">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate ">
+                                Neil Sims
+                            </p>
+                            <p class="text-sm text-gray-500 truncate ">
+                                email@flowbite.com
+                            </p>
+                        </div>
+                        <div class="inline-flex items-center text-base font-semibold text-gray-900 ">
+                            Tin nhắn mới
+                        </div>
+                    </div>
+                </li>
+                <li class="py-3 sm:py-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg"
+                                alt="Neil image">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate ">
+                                Bonnie Green
+                            </p>
+                            <p class="text-sm text-gray-500 truncate ">
+                                email@flowbite.com
+                            </p>
+                        </div>
+                        <div class="inline-flex items-center text-base font-semibold text-gray-900 ">
+                            Tin nhắn mới
+                        </div>
+                    </div>
+                </li>
+                <li class="py-3 sm:py-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-2.jpg"
+                                alt="Neil image">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate ">
+                                Michael Gough
+                            </p>
+                            <p class="text-sm text-gray-500 truncate ">
+                                email@flowbite.com
+                            </p>
+                        </div>
+                        <div class="inline-flex items-center text-base font-semibold text-gray-900 ">
+                            Tin nhắn mới
+                        </div>
+                    </div>
+                </li>
+                <li class="py-3 sm:py-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-5.jpg"
+                                alt="Neil image">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate ">
+                                Thomas Lean
+                            </p>
+                            <p class="text-sm text-gray-500 truncate ">
+                                email@flowbite.com
+                            </p>
+                        </div>
+                        <div class="inline-flex items-center text-base font-semibold text-gray-900 ">
+                            Tin nhắn mới
+                        </div>
+                    </div>
+                </li>
+                <li class="pt-3 pb-0 sm:pt-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-4.jpg"
+                                alt="Neil image">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate ">
+                                Lana Byrd
+                            </p>
+                            <p class="text-sm text-gray-500 truncate ">
+                                email@flowbite.com
+                            </p>
+                        </div>
+                        <div class="inline-flex items-center text-base font-semibold text-gray-900 ">
+                            Tin nhắn mới
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <div class="border border-gray-800 rounded-lg ml-auto w-9/12 max-[100%-28rem]">
+        <app-message></app-message>
+    </div>
+</div>

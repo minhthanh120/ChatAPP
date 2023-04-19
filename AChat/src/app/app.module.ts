@@ -6,6 +6,8 @@ import { LoginComponent } from './modules/login/login.component';
 import { RegisterComponent } from './modules/register/register.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { ChatComponent } from './modules/chat/chat.component';
+import { MessageComponent } from './modules/chat/message/message.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { HeaderComponent } from './shared/header/header.component';
     LoginComponent,
     RegisterComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    ChatComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule
