@@ -374,13 +374,12 @@ API/venv/Lib/site-packages/starlette-0.26.1.dist-info/METADATA
 API/venv/Lib/site-packages/starlette-0.26.1.dist-info/RECORD
 API/venv/Lib/site-packages/starlette-0.26.1.dist-info/WHEEL
 API/venv/Lib/site-packages/starlette-0.26.1.dist-info/licenses/LICENSE.md
-API/Database/__pycache__/models.cpython-311.pyc
 API/alembic/versions/__pycache__/74c471b31fcc_db08.cpython-311.pyc
 API/alembic/versions/__pycache__/e3b1d16b1ba6_db09.cpython-311.pyc
 API/alembic/versions/__pycache__/f323894f9d21_db10.cpython-311.pyc
 API/Repositories/__pycache__/authenticate_repository.cpython-311.pyc
-API/Database/__pycache__/models.cpython-311.pyc
 API/Services/__pycache__/authorize_service.cpython-311.pyc
 API/Services/__pycache__/group_service.cpython-311.pyc
 API/Services/__pycache__/user_service.cpython-311.pyc
-API/Database/__pycache__/models.cpython-311.pyc
+API/Repositories/__pycache__/user_repository.cpython-311.pyc
+API/Repositories/__pycache__/group_repository.cpython-311.pyc

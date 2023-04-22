@@ -1,8 +1,9 @@
-def create():
+from Database.models import User
+def create(currentUser, session):
     pass
-def edit():
+def edit(currentUser, session):
     pass
-def read():
+def read(id, session):
     pass
-def delete():
+def delete(id, session):
     pass

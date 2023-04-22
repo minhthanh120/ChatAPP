@@ -1,8 +1,8 @@
-def create():
+def create(session):
     pass
-def edit():
+def edit(session):
     pass
-def read():
+def read(session):
     pass
-def delete():
+def delete(session):
     pass
