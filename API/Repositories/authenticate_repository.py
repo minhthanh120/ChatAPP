@@ -1,4 +1,14 @@
-from Database.models import UserAuth, Login, Session
+from Database.models import UserAuth, Session
+from Database.schemas import Login
+
+def create(session):
+    pass
+def edit(session):
+    pass
+def read(session):
+    pass
+def delete(session):
+    pass
 
 def authenticate(Login:Login):
     session = Session()
@@ -8,3 +18,5 @@ def authenticate(Login:Login):
     finally:
         session.close()
     return isUser
+
+# change user password

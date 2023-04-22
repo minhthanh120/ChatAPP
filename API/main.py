@@ -1,32 +1,83 @@
-from Database.models import engine, User, Login, Register, Group
+from Database.models import Session
+from Database import models
 import uuid
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, lazyload
 from typing import Union
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Depends
 from Services import user_service, authorize_service, group_service
 import uvicorn
 from datetime import datetime
-from Database import schemas as base
+from Database.schemas import Login, Register, GroupSchema, UserSchema
 app = FastAPI()
-Session = sessionmaker(bind=engine)
+
+
+def get_session():
+    session = Session()
+    try:
+        yield session
+    finally:
+        session.close()
+
 
 @app.get("/")
 def read_foot():
-    return {"Hello":"Hello"}
+    return {"Hello": "Hello"}
+
+
 @app.get("/User/{id}")
-def read_user(id:int, q:Union[str] = None):
-    return {"id":id,"q":q}
+def read_user(id: str):
+    return {"id": id, "q": q}
+
+@app.get("/Group/{id}")
+def _read_group(id: str, session: Session = Depends(get_session)):
+    return group_service.read_group(id, session)
+
+@app.get("/Members/{id}")
+def _read_Members(id: str, session: Session = Depends(get_session)):
+    return group_service.read_members(id, session)
+
+
 @app.post("/login")
-def login(login:Login):
-    return authorize_service.login(login)
+def login(login: Login, session: Session = Depends(get_session)):
+    try:
+        return authorize_service.login(login, session)
+    except:
+        return HTTPException(404, "An exception occurred")
+
+
 @app.post("/register")
-def register(register:Register):
-    return authorize_service.register(register)
+def register(register: Register, session: Session = Depends(get_session)):
+    try:
+        return authorize_service.register(register, session)
+    except:
+        return HTTPException(404, "An exception occurred")
+
+
+@app.post("/user_edit")
+def _user_edit(user: UserSchema, session: Session = Depends(get_session)):
+    try:
+        return user_service.edit_user()
+    except:
+        return HTTPException(404, "An exception occurred")
+
+
 @app.post("/group_create")
-def _group_create(Group:base.Group):
-    return 'ok'
+def _group_create(Group: GroupSchema, session: Session = Depends(get_session)):
+    try:
+        return group_service.create_group(Group)
+    except:
+        return HTTPException(404, "An exception occurred")
+
+
+def _group_edit(Group: GroupSchema, session: Session = Depends(get_session)):
+    try:
+        return group_service.edit_group(Group, session)
+    except:
+        return HTTPException(404, "An exception occurred")
+
+
 if __name__ == '__main__':
-    uvicorn.run(app, host='127.0.0.1', port=8080)
+    uvicorn.run(app, host='127.0.0.2', port=8080)
     # user = User()
     # user.userName = 'This is test User'
     # user.email = 'dingjonghan@gmail.com'
@@ -37,17 +88,18 @@ if __name__ == '__main__':
     # session.add(user)
     # session = Session()
     # try:
-    #     result = session.get(User, 'AE5CE941-DC01-11')
+    #     result = session.query(models.User).filter(models.User.id == 'AE5CE941-DC01-11').options(lazyload(models.User.createdGroup)).first()
+    #     #result = models.User.query.first()
     #     # group = Group(id= uuid.uuid4(), groupName = "Test Group thui", creator = result)
     #     # session.add(group)
     #     # session.commit()
-    #     group = Group(id= uuid.uuid4(), groupName = "Test Group thui", creator = result, createdTime = datetime.now())
+    #     # group = models.Group(id= uuid.uuid4(), groupName = "Test Group thui", creator = result, createdTime = datetime.now())
     #     #group.createdTime = datetime.now()
     #     session.add(group)
     #     session.commit()
     # finally:
     #     session.close()
     # session.commit()
-    #for i in result:
+    # for i in result:
     # i = result
     # print(i.id+" "+ i.userName)
