@@ -37,30 +37,30 @@
             </button>
           </div>
           <div>
-            <form>
+            <form [formGroup] = "user" (ngSubmit)="authorize(user.value)">
               <div class="mb-6">
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="email"
+                <input id="email" type="email" #email formControlName="email"
                   class="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:border-gray-500"
-                  placeholder="Email">
+                  placeholder="Email o dey">
               </div>
               <div class="pb-2">
                 <label for="password" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-500">Mật
                   khẩu</label>
-                <input type="password" id="password"
+                <input id="password" type="password" #password formControlName="password"
                   class="bg-gray-50 border border-gray-500 text-gray-900 placeholder-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:text-gray-500 dark:placeholder-gray-500 dark:border-gray-500"
                   placeholder="">
+              </div>
+              <div class="px-6 grid pt-4 pb-2">
+                <button type="submit"
+                  class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                  Đăng nhập
+                </button>
               </div>
             </form>
           </div>
           <div class="">
-            <div class="px-6 grid pt-4 pb-2">
-              <button
-                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                Đăng nhập
-              </button>
-            </div>
-            <div class="grid place-items-center pt-4 pb-2 md:grid-cols-2">
+             <div class="grid place-items-center pt-4 pb-2 md:grid-cols-2">
               <a class="" href="">Quên mật khẩu?</a>
               <a class="text-cyan-500" href="">Đăng ký</a>
             </div>

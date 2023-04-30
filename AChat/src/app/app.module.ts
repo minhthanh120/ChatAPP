@@ -8,7 +8,11 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { ChatComponent } from './modules/chat/chat.component';
 import { MessageComponent } from './modules/chat/message/message.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ConfigComponent } from './modules/config/config.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthorizeService } from './services/authorize.service';
+import { UserComponent } from './modules/user/user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,12 +21,19 @@ import { MessageComponent } from './modules/chat/message/message.component';
     FooterComponent,
     HeaderComponent,
     ChatComponent,
-    MessageComponent
+    MessageComponent,
+    ConfigComponent,
+    UserComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    AuthorizeService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

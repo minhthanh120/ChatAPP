@@ -4,13 +4,22 @@ import uuid
 from sqlalchemy.orm import sessionmaker, lazyload
 from typing import Union
 from fastapi import FastAPI, HTTPException, Depends
-from Services import user_service, authorize_service, group_service
+from Services import user_service, authorize_service, group_service, message_service
 import uvicorn
 from datetime import datetime
-from Database.schemas import Login, Register, GroupSchema, UserSchema
+from Database.schemas import Login, Register, GroupSchema, UserSchema, MessageSchema
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
-
-
+origins = [
+    "*"
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 def get_session():
     session = Session()
     try:
@@ -25,8 +34,8 @@ def read_foot():
 
 
 @app.get("/User/{id}")
-def read_user(id: str):
-    return {"id": id, "q": q}
+def read_user(id: str, session:Session = Depends(get_session)):
+    return user_service.get_user(id, session)
 
 @app.get("/Group/{id}")
 def _read_group(id: str, session: Session = Depends(get_session)):
@@ -36,6 +45,10 @@ def _read_group(id: str, session: Session = Depends(get_session)):
 def _read_Members(id: str, session: Session = Depends(get_session)):
     return group_service.read_members(id, session)
 
+
+@app.post("Message")
+def _send_message(message:MessageSchema, session:Session= Depends(get_session)):
+    return message_service.send_message()
 
 @app.post("/login")
 def login(login: Login, session: Session = Depends(get_session)):

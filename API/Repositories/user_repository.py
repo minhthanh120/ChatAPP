@@ -1,9 +1,10 @@
 from Database.models import User
-def create(currentUser, session):
-    pass
-def edit(currentUser, session):
+def create(user, session):
+    session.add(message)
+    session.commit()
+def edit(user, session):
     pass
 def read(id, session):
-    pass
+    return session.query(User).get(id)
 def delete(id, session):
     pass
