@@ -20,8 +20,9 @@ const httpOptions = {
 })
 export class AuthorizeService {
   subdomain:string = "/login"
-  isLoggedIn: boolean = false;
-  responseStatus: number = 0;
+  //isLoggedIn: boolean = false;
+  response: string = '';
+  public user: any | undefined;
   //private handleError: HandleError;
   constructor(private http: HttpClient,) {
     //this.handleError = httpErrorHandler.createHandleError('AuthorizeService');
@@ -29,15 +30,23 @@ export class AuthorizeService {
 
 
   login(login: Login) {
-    this.http.post<Login>(enviroment.backendServer+this.subdomain, login, { observe: 'response' })
-    .subscribe(
-      (data: HttpResponse<any>) => {
-        console.log(data.body.status_code);
-      },
-      (err: HttpErrorResponse) => {
-          retry(3);
-          console.error('403 status code caught');
-      },
-    );
+    return this.http.post<any>(enviroment.backendServer+this.subdomain, login)
+    .pipe(
+      map((user) =>{
+        localStorage.setItem(this.user, JSON.stringify(user));
+        console.log(localStorage.getItem(this.user));
+        //this.isLoggedIn= true;
+        return user;
+      })
+    )
   }
+  logOut(){
+    localStorage.removeItem(this.user);
+  }
+
+  // GetUserName() {
+  //   this.http.post<Login>(enviroment.backendServer + this.subdomain, this.login, {responseType: 'text'}).subscribe(result => {
+  //     sessionStorage.setItem("UserName", result);
+  //     alert(sessionStorage.getItem("UserName"));
+  //   }, error => console.log(error));}
 }

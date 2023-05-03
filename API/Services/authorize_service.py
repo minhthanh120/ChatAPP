@@ -1,12 +1,14 @@
 from Database.models import Session, User, UserAuth, UserPassword
 from Repositories import authenticate_repository
 from fastapi import HTTPException, Response
+from fastapi.responses import JSONResponse
 from sqlalchemy.orm import lazyload
 def login(Login, session):
     user = session.query(UserAuth).filter(UserAuth.email == Login.email).options(lazyload(UserAuth.hashedPassword)).first()
     if user:
         if user.hashedPassword.encriptedValue == Login.password:
-            return Response("Allow login")
+            currentUser = session.query(User).filter(User.email == Login.email).first()
+            return currentUser
     return HTTPException(401, "Unauthorize")
     
 def register(Register, session):

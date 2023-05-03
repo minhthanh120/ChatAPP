@@ -8,3 +8,5 @@ select * from dbo.[Group]
 select * from dbo.[UserPassword]
 
 select * from dbo.[UserAuth] where Id = 'AE5CE941-DC01-11'
+
+insert UserInfo(Id, UserName, FirstName, LastName, Email) values('A5E1EC42-F5FB-40','lmt1202', 'Le','Ming', 'dingjohan@gmail.com.vn')

@@ -5,3 +5,6 @@ pymssql
 fastapi
 uvicorn
 pydantic
+pyjwt
+python-jose[cryptography]
+passlib[bcrypt]

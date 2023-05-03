@@ -13,6 +13,7 @@ import { ConfigComponent } from './modules/config/config.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthorizeService } from './services/authorize.service';
 import { UserComponent } from './modules/user/user.component';
+import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { UserComponent } from './modules/user/user.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AppRoutingModule,
   ],
   providers: [
     AuthorizeService,

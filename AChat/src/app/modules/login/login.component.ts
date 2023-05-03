@@ -1,5 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { first } from 'rxjs';
 import { Config } from 'src/app/interface/config';
 import { Login } from 'src/app/interface/login';
 import { AuthorizeService } from 'src/app/services/authorize.service';
@@ -10,13 +12,20 @@ import { AuthorizeService } from 'src/app/services/authorize.service';
 })
 @Injectable()
 export class LoginComponent implements OnInit {
-  login: boolean | undefined;
+  //login: boolean | undefined;
   submitted = false;
   user!: FormGroup;
-  constructor(private authorizeService: AuthorizeService) {
+  //res:any ="";
+  constructor(private authorize: AuthorizeService, private router:Router) {
 
   }
   ngOnInit(): void {
+    var usr = localStorage.getItem(this.authorize.user);
+    if(usr != null){
+      this.router.navigate(['']);
+      //return;
+    }
+    console.log(usr);
     this.user = new FormGroup({
       email:new FormControl<string>('', {nonNullable:true}),
       password:new FormControl<string>('', {nonNullable:true}),
@@ -25,13 +34,20 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     this.submitted=true;
   }
-  authorize(data:any){
-    console.log(data)
-    if(!data.email || !data.password){
-      console.log(data.email+" "+data.password);
-      return;
-    }
-    console.log("ok");
-    this.authorizeService.login(data);
+  login(data:any){
+    //this.router.navigate[''];
+    console.log(data);
+    this.authorize.login(data).pipe(first())
+    .subscribe({
+      next:()=>{
+        this.router.navigate(['']);
+      },
+      error:error=>{
+        console.log(error);
+      }
+    })
+  }
+  toIndex(){
+    //this.authorize.isLoggedIn = true;
   }
 }

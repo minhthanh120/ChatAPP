@@ -37,7 +37,7 @@
             </button>
           </div>
           <div>
-            <form [formGroup] = "user" (ngSubmit)="authorize(user.value)">
+            <form [formGroup] = "user" (ngSubmit)="login(user.value)">
               <div class="mb-6">
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email</label>
                 <input id="email" type="email" #email formControlName="email"

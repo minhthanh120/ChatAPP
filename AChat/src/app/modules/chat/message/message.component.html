@@ -1,139 +1,265 @@
-<div class="flex-1 p:2 sm:p-6 justify-between flex flex-col h-screen">
-    <div class="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
-        <div class="relative flex items-center space-x-4">
-            <div class="relative">
-                <span class="absolute text-green-500 right-0 bottom-0">
-                    <svg width="20" height="20">
-                        <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
-                    </svg>
-                </span>
-                <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
-                    alt="" class="w-10 sm:w-16 h-10 sm:h-16 rounded-full">
-            </div>
-            <div class="flex flex-col leading-tight">
-                <div class="text-2xl mt-1 flex items-center">
-                    <span class="text-gray-700 mr-3">Trịnh Văn Sơn</span>
+<div class="flex flex-col h-screen">
+    <div class="bg-white border-x  shadow-lg w-full">
+        <div class="flex flex-row p-3">
+            <div class="flex items-center">
+                <div
+                    class="relative flex items-center justify-center w-14 h-14 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                    <!-- <span class="font-bold text-xl text-gray-600 dark:text-gray-300">AB</span> -->
+                    <img src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Rounded avatar">
                 </div>
-                <span class="text-lg text-gray-600">Giáo viên môn Vật lý đại cương</span>
+            </div>
+            <div class="ml-2 flex flex-col items-center justify-center">
+                <div>
+                    <h1 id="fullname" class="font-bold text-base">Fullname</h1>
+                    <h2 id="username">@UserName</h2>
+                    <!-- <div class="flex items-center space-x-1">
+                        <span class="w-3.5 h-3.5 bg-green-400 border-2 border-white rounded-full"></span>
+                        <p>Online</p>
+                    </div> -->
+                </div>
+            </div>
+            <div class="ml-auto flex items-center pr-2">
+                <div class="rounded-full bg-white hover:bg-gray-200">
+                    <svg class="w-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z">
+                        </path>
+                    </svg>
+                </div>
             </div>
         </div>
-        <div class="flex items-center space-x-2">
-            <button type="button"
-                class="inline-flex items-center justify-center rounded-lg border h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" class="h-6 w-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
-            </button>
-            <button type="button"
-                class="inline-flex items-center justify-center rounded-lg border h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" class="h-6 w-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                    </path>
-                </svg>
-            </button>
-            <button type="button"
-                class="inline-flex items-center justify-center rounded-lg border h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" class="h-6 w-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
-                    </path>
-                </svg>
-            </button>
+        <div>
         </div>
+
     </div>
     <div id="messages"
-        class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
-        
-    </div>
-    <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
-        <div class="relative flex">
-            <span class="absolute inset-y-0 flex items-center">
-                <button type="button"
-                    class="inline-flex items-center justify-center rounded-full h-12 w-12 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" class="h-6 w-6 text-gray-600">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z">
+        class="space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
+        <div class="flex justify-center">
+            <p id="timecreated" class="bg-gray-200 rounded-full px-1">12:02AM, 1/1/2023</p>
+        </div>
+        <div class="flex justify-start">
+            <div>
+                <div class="relative flex items-center justify-center w-10 h-10 rounded-full mr-2 bg-gray-600">
+                    <img class="w-10 h-10 rounded-full mx-2"
+                        src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Rounded avatar">
+                    <!-- <span class="rounded-full mx-2 font-bold text-base text-gray-300 ">AB</span> -->
+                </div>
+            </div>
+            <div class="w-40 border rounded-md">
+                <div class="p-1 ">
+                    <div class="">
+                        <p>
+                            Send message
+                        </p>
+                    </div>
+                    <div class="flex justify-end">
+                        <p>11:24AM, 11/01/2023</p>
+                    </div>
+                </div>
+                <div class="flex justify-end p-1">
+                    <svg class="hidden w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z">
+                        </path>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
                         </path>
                     </svg>
-                </button>
-            </span>
-            <input type="text" placeholder="Write your message!"
-                class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3">
-            <div class="absolute right-0 items-center inset-y-0 hidden sm:flex">
-                <button type="button"
-                    class="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" class="h-6 w-6 text-gray-600">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13">
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-end">
+            <div class="w-40 border rounded-md">
+                <div class="p-1">
+                    <div>
+                        <p>
+                            Send message
+                        </p>
+                    </div>
+                    <div class="flex justify-end">
+                        <p>11:24AM, 11/01/2023</p>
+                    </div>
+                </div>
+                <div class="flex justify-end p-1">
+                    <svg class="hidden w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z">
+                        </path>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
                         </path>
                     </svg>
-                </button>
-                <button type="button"
-                    class="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" class="h-6 w-6 text-gray-600">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z">
+                </div>
+            </div>
+            <div>
+                <div class="relative flex items-center justify-center w-10 h-10 rounded-full ml-2 bg-gray-600">
+                    <!-- <img class="w-10 h-10 rounded-full mx-2" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Rounded avatar"> -->
+                    <span class="rounded-full mx-2 font-bold text-base text-gray-300 ">AB</span>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-start">
+            <div>
+                <div class="relative flex items-center justify-center w-10 h-10 rounded-full mr-2 bg-gray-600">
+                    <img class="w-10 h-10 rounded-full mx-2"
+                        src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Rounded avatar">
+                    <!-- <span class="rounded-full mx-2 font-bold text-base text-gray-300 ">AB</span> -->
+                </div>
+            </div>
+            <div class="w-40 border rounded-md">
+                <div>
+                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z">
+                    </path>
+                </svg>
+                </div>
+                <div class="flex justify-end">
+                    <p>11:24AM, 11/01/2023</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-start">
+            <div class="relative flex items-center justify-center w-10 h-10 rounded-full mr-2 bg-gray-600">
+                <img class="w-10 h-10 rounded-full mx-2"
+                    src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Rounded avatar">
+                <!-- <span class="rounded-full mx-2 font-bold text-base text-gray-300 ">AB</span> -->
+            </div>
+            <div class="w-40 border rounded-md">
+                <div>
+                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z">
+                    </path>
+                </svg>
+                </div>
+                <div class="flex justify-end">
+                    <p>11:24AM, 11/01/2023</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-start">
+            <div class="relative flex items-center justify-center w-10 h-10 rounded-full mr-2 bg-gray-600">
+                <img class="w-10 h-10 rounded-full mx-2"
+                    src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Rounded avatar">
+                <!-- <span class="rounded-full mx-2 font-bold text-base text-gray-300 ">AB</span> -->
+            </div>
+            <div class="w-40 border rounded-md">
+                <div>
+                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z">
+                    </path>
+                </svg>
+                </div>
+                <div class="flex justify-end">
+                    <p>11:24AM, 11/01/2023</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-end">
+            <div class="w-40 border rounded-md">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z">
+                    </path>
+                </svg>
+                <div class="flex justify-end p-1">
+                    <div>
+                        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z">
                         </path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
-                </button>
-                <button type="button"
-                    class="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" class="h-6 w-6 text-gray-600">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                    </div>
+                    <div class="flex justify-end">
+                        <p>11:24AM, 11/01/2023</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="relative flex items-center justify-center w-10 h-10 rounded-full ml-2 bg-gray-600">
+                    <!-- <img class="w-10 h-10 rounded-full mx-2" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Rounded avatar"> -->
+                    <span class="rounded-full mx-2 font-bold text-base text-gray-300 ">AB</span>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-end">
+            <div class="w-40 border rounded-md">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z">
+                    </path>
+                </svg>
+                <div class="flex justify-end p-1">
+                    <div>
+                        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z">
                         </path>
                     </svg>
-                </button>
-                <button type="button"
-                    class="inline-flex items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none">
-                    <span class="font-bold">Gửi</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                        class="h-6 w-6 ml-2 transform rotate-90">
-                        <path
-                            d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z">
-                        </path>
-                    </svg>
-                </button>
+                    </div>
+                    <div class="flex justify-end">
+                        <p>11:24AM, 11/01/2023</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="relative flex items-center justify-center w-10 h-10 rounded-full ml-2 bg-gray-600">
+                    <!-- <img class="w-10 h-10 rounded-full mx-2" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Rounded avatar"> -->
+                    <span class="rounded-full mx-2 font-bold text-base text-gray-300 ">AB</span>
+                </div>
             </div>
         </div>
     </div>
+    <div
+        class="bg-white flex flex-row items-center px-5 mt-auto py-2 w-full border-t border-l rounded-t-md border-sky-600">
+        <div class="grid grid-cols-3 gap-6 pr-3 text-cyan-400">
+            <div class="w-6 h-6 p-0.5 rounded-full hover:bg-gray-200">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z">
+                    </path>
+                </svg>
+            </div>
+            <div class="w-6 h-6 p-0.5 rounded-full hover:bg-gray-200">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z">
+                    </path>
+                </svg>
+            </div>
+            <div class="w-6 h-6 p-0.5 rounded-full hover:bg-gray-200">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13">
+                    </path>
+                </svg>
+            </div>
+        </div>
+        <textarea id="message" type="text" maxlength="255"
+            class="w-full border border-sky-600 mx-3 py-0 px-4 rounded-lg scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
+            placeholder="Type your message here, ha!"></textarea>
+        <button type="button" id="send"
+            class="inline-flex border text-cyan-400 hover:bg-gray-100 px-5 py-2 rounded-full">
+            <svg class="h-6 w-6 " fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5">
+                </path>
+            </svg>
+            Send
+        </button>
+    </div>
 </div>
-
-<style>
-    .scrollbar-w-2::-webkit-scrollbar {
-        width: 0.5rem;
-        height: 0.25rem;
-    }
-
-    .scrollbar-track-blue-lighter::-webkit-scrollbar-track {
-        --bg-opacity: 1;
-        background-color: #f7fafc;
-        background-color: rgba(247, 250, 252, var(--bg-opacity));
-    }
-
-    .scrollbar-thumb-blue::-webkit-scrollbar-thumb {
-        --bg-opacity: 1;
-        background-color: #59a8f8;
-        /* background-color: rgba(237, 242, 247, var(--bg-opacity)); */
-    }
-
-    .scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
-        border-radius: 0.25rem;
-    }
-</style>
-
-<script>
-    const el = document.getElementById('messages')
-    el.scrollTop = el.scrollHeight
-</script>
