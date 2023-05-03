@@ -3,12 +3,13 @@ from Database import models
 import uuid
 from sqlalchemy.orm import sessionmaker, lazyload
 from typing import Union
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, Response
 from Services import user_service, authorize_service, group_service, message_service
 import uvicorn
 from datetime import datetime
 from Database.schemas import Login, Register, GroupSchema, UserSchema, MessageSchema
 from fastapi.middleware.cors import CORSMiddleware
+import jwt
 app = FastAPI()
 origins = [
     "*"
@@ -20,6 +21,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+SECURITY_ALGORITHM = 'HS256'
+SECRET_KEY = '123456'
+
 def get_session():
     session = Session()
     try:
@@ -30,7 +35,8 @@ def get_session():
 
 @app.get("/")
 def read_foot():
-    return {"Hello": "Hello"}
+    a= "Hello"
+    return "Hello"
 
 
 @app.get("/User/{id}")
@@ -52,10 +58,10 @@ def _send_message(message:MessageSchema, session:Session= Depends(get_session)):
 
 @app.post("/login")
 def login(login: Login, session: Session = Depends(get_session)):
-    try:
+    #try:
         return authorize_service.login(login, session)
-    except:
-        return HTTPException(404, "An exception occurred")
+    #except():
+    #    return HTTPException(404, "An exception occurred")
 
 
 @app.post("/register")
@@ -81,7 +87,7 @@ def _group_create(Group: GroupSchema, session: Session = Depends(get_session)):
     except:
         return HTTPException(404, "An exception occurred")
 
-
+@app.post("/group_edit")
 def _group_edit(Group: GroupSchema, session: Session = Depends(get_session)):
     try:
         return group_service.edit_group(Group, session)
