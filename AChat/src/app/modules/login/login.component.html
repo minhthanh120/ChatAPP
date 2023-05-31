@@ -1,4 +1,5 @@
-<div class="grid place-items-center">
+<div class="h-screen flex items-center justify-center">
+  <div class="grid place-items-center">
     <div
       class="transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none">
       <div class="w-28rem rounded overflow-hidden shadow-lg px-2">
@@ -37,6 +38,7 @@
             </button>
           </div>
           <div>
+            <p *ngIf="error"></p>
             <form [formGroup] = "user" (ngSubmit)="login(user.value)">
               <div class="mb-6">
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email</label>
@@ -62,10 +64,12 @@
           <div class="">
              <div class="grid place-items-center pt-4 pb-2 md:grid-cols-2">
               <a class="" href="">Quên mật khẩu?</a>
-              <a class="text-cyan-500" href="">Đăng ký</a>
+              <a class="text-cyan-500" href="/register">Đăng ký</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+</div>

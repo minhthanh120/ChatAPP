@@ -1,21 +1,25 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status, Response
 from database.models import Session
 from database.schemas import UserSchema
 from security import reuasble_oauth2
 from main import get_session
-from repositories import user_repository
+from repositories.user_repository import user_repo as user_repository
+from security import get_current_user
 
 user_router = APIRouter()
-@user_router.get("/User/{id}", dependencies=[Depends(reuasble_oauth2)])
-def _get_current_user(id: str, session: Session = Depends(get_session)):
-    return user_repository.read(id, session)
-@user_router.post("/User/edit")
-def _edit_user(user, session: Session = Depends(get_session)):
-    return user_repository.edit(user, session)
 
-@user_router.post("/user_edit")
-def _user_edit(user: UserSchema, session: Session = Depends(get_session)):
+
+@user_router.get("/")
+def _get_current_user(user: UserSchema = Depends(get_current_user)):
+    return user
+
+
+@user_router.post("/edit")
+def _edit_user(user:UserSchema, session: Session = Depends(get_session)):
     try:
-        pass
+        if(user_repository.read(user.id) == None):
+            return HTTPException(status.HTTP_404_NOT_FOUND, "Not found user")
+        user_repository.edit(user)
+        return {"Edited successfull"}
     except:
         return HTTPException(404, "An exception occurred")

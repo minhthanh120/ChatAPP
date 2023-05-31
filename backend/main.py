@@ -1,3 +1,4 @@
+import test_token
 from database.models import Session
 
 from fastapi import FastAPI, HTTPException, Depends, Response
@@ -21,14 +22,18 @@ def get_session():
     session = Session()
     try:
         yield session
+    except Exception:
+        session.rollback()
     finally:
         session.close()
 
 @app.get("/")
-def read_foot():
-    a= "Hello"
+def read_is_first():
     return "Hello"
-
+HOST = '127.0.0.1'
+PORT = 8080
 if __name__ == '__main__':
+
     app.include_router(router=router.router)
-    uvicorn.run(app, host='127.0.0.2', port=8080)
+    app.include_router(router=test_token.test_route, prefix='/test')
+    uvicorn.run(app, host=HOST, port=PORT)

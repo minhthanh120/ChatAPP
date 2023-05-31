@@ -9,3 +9,4 @@ pyjwt
 pathlib
 python-jose[cryptography]
 passlib[bcrypt]
+python-multipart

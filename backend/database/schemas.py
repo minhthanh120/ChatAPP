@@ -1,4 +1,4 @@
-from pydantic import BaseModel, constr
+from pydantic import BaseModel, constr, datetime_parse
 from datetime import datetime
 from typing import Optional
 class User(BaseModel):
@@ -7,8 +7,9 @@ class User(BaseModel):
     firstName: constr(max_length=25)
     lastName: constr(max_length=25)
     email: constr(max_length=100)
-    avatar: constr(max_length=255)
+    avatar: constr(max_length=255) = None
     phone: Optional[constr(max_length=11)] = None
+    joinedDate: datetime = None
 class Group(BaseModel):
     id: constr(max_length=450)
     groupName: str
@@ -46,7 +47,9 @@ class Token(BaseModel):
     token_type: str
 
 class TokenData(BaseModel):
-    username: str | None = None
+    exp:str
+    sub:str
+    #username: str | None = None
 class Register(BaseModel):
     email: str
     password: str

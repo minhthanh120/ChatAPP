@@ -14,6 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthorizeService } from './services/authorize.service';
 import { UserComponent } from './modules/user/user.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SearchComponent } from './modules/chat/search/search.component';
+import { AddgroupComponent } from './modules/addgroup/addgroup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,9 @@ import { AppRoutingModule } from './app-routing.module';
     ChatComponent,
     MessageComponent,
     ConfigComponent,
-    UserComponent
+    UserComponent,
+    SearchComponent,
+    AddgroupComponent
   ],
   imports: [
     BrowserModule,

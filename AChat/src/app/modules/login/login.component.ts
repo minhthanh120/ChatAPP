@@ -1,10 +1,11 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { first } from 'rxjs';
+import { catchError, first, of } from 'rxjs';
 import { Config } from 'src/app/interface/config';
 import { Login } from 'src/app/interface/login';
 import { AuthorizeService } from 'src/app/services/authorize.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,39 +16,40 @@ export class LoginComponent implements OnInit {
   //login: boolean | undefined;
   submitted = false;
   user!: FormGroup;
+  error: string | undefined;
   //res:any ="";
-  constructor(private authorize: AuthorizeService, private router:Router) {
+  constructor(private authorize: AuthorizeService, private router: Router) {
 
   }
   ngOnInit(): void {
-    var usr = localStorage.getItem(this.authorize.user);
-    if(usr != null){
+    var token = localStorage.getItem(this.authorize.token);
+    if (token != null) {
       this.router.navigate(['']);
       //return;
     }
-    console.log(usr);
     this.user = new FormGroup({
-      email:new FormControl<string>('', {nonNullable:true}),
-      password:new FormControl<string>('', {nonNullable:true}),
+      email: new FormControl<string>('', { nonNullable: true }),
+      password: new FormControl<string>('', { nonNullable: true }),
     });
   }
-  onSubmit(){
-    this.submitted=true;
+  onSubmit() {
+    this.submitted = true;
   }
-  login(data:any){
+  login(data: any) {
     //this.router.navigate[''];
-    console.log(data);
     this.authorize.login(data).pipe(first())
-    .subscribe({
-      next:()=>{
-        this.router.navigate(['']);
-      },
-      error:error=>{
-        console.log(error);
+      .subscribe({
+        next: () => {
+          this.router.navigate(['']);
+        },
+        error: err => {
+          console.log(err);
+        }
       }
-    })
+      )
+
   }
-  toIndex(){
+  toIndex() {
     //this.authorize.isLoggedIn = true;
   }
 }
