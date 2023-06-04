@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { AuthorizeService } from 'src/app/services/authorize.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,7 @@ export class RegisterComponent {
   /**
    *
    */
-  constructor(private authorize: AuthorizeService, private router: Router) {
+  constructor(public spinnerService:SpinnerService ,private authorize: AuthorizeService, private router: Router) {
   }
   ngOnInit(): void {
     this.user = new FormGroup({

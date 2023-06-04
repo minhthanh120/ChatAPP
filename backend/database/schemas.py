@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Optional
 class User(BaseModel):
     id: constr(max_length=450)
-    userName: constr(max_length=50)
+    userName: constr(max_length=50) = None
     firstName: constr(max_length=25)
     lastName: constr(max_length=25)
     email: constr(max_length=100)
@@ -11,9 +11,9 @@ class User(BaseModel):
     phone: Optional[constr(max_length=11)] = None
     joinedDate: datetime = None
 class Group(BaseModel):
-    id: constr(max_length=450)
+    id: constr(max_length=450) = None
     groupName: str
-    createdTime: datetime
+    createdTime: datetime = None
     creatorId: constr(max_length=450)
 class JoinedMember(BaseModel):
     id: constr(max_length=450)
@@ -79,9 +79,9 @@ class UserSchema(User):
     requested: Optional[list[JoinRequest]] = None
 
 class GroupSchema(Group):
-    messages: Optional[list[Message]] = None
-    joined: Optional[list[JoinedMember]] = None
-    requested: Optional[list[JoinRequest]] = None
+    messages: Optional[list[Message]] = []
+    joined: Optional[list[JoinedMember]] = []
+    requested: Optional[list[JoinRequest]] = []
     creator: Optional[User] = None
 
 class JoinedMemberSchema(JoinedMember):

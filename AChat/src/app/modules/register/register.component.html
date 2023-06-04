@@ -29,6 +29,26 @@
                 class="bg-gray-50 border border-gray-500 text-gray-900 placeholder-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:text-gray-500 dark:placeholder-gray-500 dark:border-gray-500"
                 placeholder="">
             </div>
+            <div *ngIf="spinnerService.visibility | async" class="w-full flex justify-center animate-spin">
+              <svg class="w-8 h-8" width="590" height="590" viewBox="0 0 590 590" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <rect width="590" height="590" fill="white" />
+                <path d="M470 559L403.14 352.69L294.224 318.429L470 559Z" fill="#FFDD55" />
+                <path d="M293.93 431.986L470 559L294.224 318.429L293.93 431.986Z" fill="#FFCC00" />
+                <path d="M119 559L293.93 431.986L294.224 318.429L119 559Z" fill="#FFDD55" />
+                <path d="M185.816 353.995L119 559L294.224 318.429L185.816 353.995Z" fill="#FED42A" />
+                <path d="M7 225L185.816 353.995L294.224 318.429L293.444 317.331L7 225Z" fill="#FFCC00" />
+                <path d="M227.859 225H7L293.444 317.331L227.859 225Z" fill="#FFE681" />
+                <path d="M366.759 225L295 19L294.612 168.714L294.226 317.583L366.759 225Z" fill="#FFDD55" />
+                <path d="M584 225H366.759L294.226 317.583L294.224 318.429L584 225Z" fill="#FFE681" />
+                <path d="M403.14 352.69L584 225L294.224 318.429L403.14 352.69Z" fill="#FFCC00" />
+                <path d="M295 19L227.859 225L293.444 317.331L294.226 317.583L294.612 168.714L295 19Z"
+                  fill="#FFCC00" />
+                <path
+                  d="M119 559L185.816 353.995M119 559L293.93 431.986M119 559L294.224 318.429M470 559L403.14 352.69M470 559L293.93 431.986M470 559L294.224 318.429M584 225L403.14 352.69M584 225H366.759M584 225L294.224 318.429M295 19L227.859 225M295 19L366.759 225M295 19L294.612 168.714L294.226 317.583M7 225L185.816 353.995M7 225H227.859M7 225L293.444 317.331M185.816 353.995L294.224 318.429M403.14 352.69L294.224 318.429M293.93 431.986L294.224 318.429M294.224 318.429L294.226 317.583M294.224 318.429L293.444 317.331M227.859 225L293.444 317.331M366.759 225L294.226 317.583M293.444 317.331L294.226 317.583"
+                  stroke="#FBCB0F" />
+              </svg>
+            </div>
             <div class="px-6 grid pt-4 pb-2">
               <button type="submit"
                 class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">

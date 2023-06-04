@@ -5,6 +5,7 @@ import { catchError, first, of } from 'rxjs';
 import { Config } from 'src/app/interface/config';
 import { Login } from 'src/app/interface/login';
 import { AuthorizeService } from 'src/app/services/authorize.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   user!: FormGroup;
   error: string | undefined;
   //res:any ="";
-  constructor(private authorize: AuthorizeService, private router: Router) {
+  constructor(public spinnerService:SpinnerService,private authorize: AuthorizeService, private router: Router) {
 
   }
   ngOnInit(): void {

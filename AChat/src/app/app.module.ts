@@ -8,7 +8,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { ChatComponent } from './modules/chat/chat.component';
 import { MessageComponent } from './modules/chat/message/message.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ConfigComponent } from './modules/config/config.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthorizeService } from './services/authorize.service';
@@ -16,6 +16,8 @@ import { UserComponent } from './modules/user/user.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SearchComponent } from './modules/chat/search/search.component';
 import { AddgroupComponent } from './modules/addgroup/addgroup.component';
+import { CustomHttpInterceptor } from './services/http-interceptor';
+import { RecentComponent } from './modules/chat/recent/recent.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import { AddgroupComponent } from './modules/addgroup/addgroup.component';
     ConfigComponent,
     UserComponent,
     SearchComponent,
-    AddgroupComponent
+    AddgroupComponent,
+    RecentComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,11 @@ import { AddgroupComponent } from './modules/addgroup/addgroup.component';
   ],
   providers: [
     AuthorizeService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:CustomHttpInterceptor,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })

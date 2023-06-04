@@ -22,8 +22,8 @@ class User(Base):
     __tablename__ = 'UserInfo'
     id = mapped_column('Id', NVARCHAR(450), primary_key=True, default=uuid4)
     userName = mapped_column('UserName', String(50))
-    firstName = mapped_column('FirstName', String(25))
-    lastName = mapped_column('LastName', String(25))
+    firstName = mapped_column('FirstName', NVARCHAR(25))
+    lastName = mapped_column('LastName', NVARCHAR(25))
     email = mapped_column('Email', String(100))
     avatar = mapped_column('Avatar', String(255), nullable=True)
     phone = mapped_column('Phone', String(15), nullable=True)
@@ -42,18 +42,18 @@ class User(Base):
 class Group(Base):
     __tablename__ = 'Group'
     id = mapped_column('Id', NVARCHAR(450), primary_key=True, default=uuid4)
-    groupName = mapped_column('GroupName', String)
+    groupName = mapped_column('GroupName', NVARCHAR)
     createdTime = mapped_column('CreatedTime', DateTime, default=func.now())
     creatorId = mapped_column(
         'CreatorId', NVARCHAR(450), ForeignKey("UserInfo.Id"))
     messages: Mapped[List["Message"]] = relationship(
-        back_populates="group", lazy="joined")
+        back_populates="group")
     joined: Mapped[List["JoinedMember"]] = relationship(
         back_populates="group", lazy="joined")
     requested: Mapped[List["JoinRequest"]] = relationship(
-        back_populates="group", lazy="joined")
+        back_populates="group")
     creator: Mapped[User] = relationship(
-        back_populates='createdGroup', lazy="joined")
+        back_populates='createdGroup')
 
 
 class LastestMessage(Base):
@@ -87,7 +87,7 @@ class JoinedMember(Base):
     memberId = mapped_column('MemberId', NVARCHAR(450),
                              ForeignKey('UserInfo.Id'))
     joinedTime = mapped_column('JoinedTime', DateTime, default=func.now())
-    role = mapped_column('Role', Integer)
+    role = mapped_column('Role', Integer, nullable=True)
     group: Mapped[Group] = relationship(back_populates='joined', lazy="joined")
     member: Mapped[User] = relationship(
         back_populates='joinedGroup', lazy="joined")
@@ -96,7 +96,7 @@ class JoinedMember(Base):
 class Message(Base):
     __tablename__ = 'Message'
     id = mapped_column('Id', NVARCHAR(450), primary_key=True, default=uuid4)
-    content = mapped_column('Content', String(255))
+    content = mapped_column('Content', NVARCHAR(255))
     createdTime = mapped_column('CreatedTime', DateTime, default=func.now())
     groupId = mapped_column('GroupId', NVARCHAR(450), ForeignKey('Group.Id'))
     senderId = mapped_column('SenderId', NVARCHAR(450),
@@ -129,7 +129,7 @@ class Token(Base):
     id = mapped_column('Id', NVARCHAR(450), default=uuid4)
     userId = mapped_column('UserId', NVARCHAR(
         450), ForeignKey('UserAuth.Id'), primary_key=True)
-    tokenValue = mapped_column('TokenValue', String)
+    tokenValue = mapped_column('TokenValue', NVARCHAR(450))
     createdTime = mapped_column('CreatedTime', DateTime, default=func.now())
 
 

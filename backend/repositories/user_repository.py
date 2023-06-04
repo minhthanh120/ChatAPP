@@ -26,7 +26,7 @@ class UserRepository:
         user =self.session.query(User).get(id)
         return user
 
-    def searchbyemail(self, email: str):
+    def searchbyEmail(self, email: str):
         return self.session.query(User).filter(User.email.like('%'+email+'%')).all()
     def delete(self, id):
         pass

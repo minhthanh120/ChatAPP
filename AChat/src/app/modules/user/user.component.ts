@@ -48,6 +48,6 @@ export class UserComponent implements OnInit {
     this.userService.getCurrentUser(access_token!).subscribe();
   }
   onChange() {
-    this.submitBtn = !this.submitBtn;
+    this.submitBtn = true;
   }
 }

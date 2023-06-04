@@ -23,3 +23,11 @@ def _edit_user(user:UserSchema, session: Session = Depends(get_session)):
         return {"Edited successfull"}
     except:
         return HTTPException(404, "An exception occurred")
+@user_router.get("/searchbyEmail/{key}")
+def _searchbyEmail(key:str):
+    try:
+        if(len(key)>0):
+            lstUser = user_repository.searchbyEmail(key)
+            return lstUser
+    except:
+        return HTTPException(404, "An exception occurred")
