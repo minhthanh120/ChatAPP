@@ -31,3 +31,4 @@ def _searchbyEmail(key:str):
             return lstUser
     except:
         return HTTPException(404, "An exception occurred")
+

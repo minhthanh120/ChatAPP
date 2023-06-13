@@ -232,3 +232,105 @@ insert UserInfo(Id, FirstName, LastName, Email, JoinedDate) values('70015132-db8
 insert UserInfo(Id, FirstName, LastName, Email, JoinedDate) values('70015133-db82-11ed-b845-70a6ccc4b566', N'Trịnh', N'An Anh Phụng', 'phungananhtrinh@cloudclass.software', GETDATE());
 insert UserInfo(Id, FirstName, LastName, Email, JoinedDate) values('70015134-db82-11ed-b55f-70a6ccc4b566', N'Phạm', N'Lam Anh Uyên', 'uyenlamanhpham@cloudclass.software', GETDATE());
 insert UserInfo(Id, FirstName, LastName, Email, JoinedDate) values('70015135-db82-11ed-8681-70a6ccc4b566', N'Trương', N'Nguyên Tiên', 'tiennguyentruong@cloudclass.software', GETDATE());
+
+select * from dbo.[group]
+
+SELECT * from UserInfo
+
+select * from JoinedMember
+
+DELETE JoinedMember
+delete dbo.[group]
+
+insert dbo.[Group](Id,GroupName, CreatedTime, CreatorId) values(NEWID(), N'Nhóm hỗ trợ giáo viên', GETDATE(), N'70015125-db82-11ed-9c4f-70a6ccc4b566')
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'78A212DB-926A-4828-85A3-E62E94A2CDF8', N'70015125-db82-11ed-9c4f-70a6ccc4b566', GETDATE())
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'78A212DB-926A-4828-85A3-E62E94A2CDF8', N'7001034d-db82-11ed-a300-70a6ccc4b566', GETDATE())
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'78A212DB-926A-4828-85A3-E62E94A2CDF8', N'7001034e-db82-11ed-a794-70a6ccc4b566', GETDATE())
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'78A212DB-926A-4828-85A3-E62E94A2CDF8', N'70012a66-db82-11ed-9335-70a6ccc4b566', GETDATE())
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'78A212DB-926A-4828-85A3-E62E94A2CDF8', N'70012a67-db82-11ed-be15-70a6ccc4b566', GETDATE())
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'78A212DB-926A-4828-85A3-E62E94A2CDF8', N'70015120-db82-11ed-a57f-70a6ccc4b566', GETDATE())
+
+insert dbo.[Group](Id,GroupName, CreatedTime, CreatorId) values(NEWID(), N'Nhóm hỗ trợ sinh viên', GETDATE(), N'70015135-db82-11ed-8681-70a6ccc4b566')
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70015135-db82-11ed-8681-70a6ccc4b566', GETDATE())
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70015125-db82-11ed-9c4f-70a6ccc4b566', GETDATE())
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'7001034d-db82-11ed-a300-70a6ccc4b566', GETDATE())
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'7001034e-db82-11ed-a794-70a6ccc4b566', GETDATE())
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a42-db82-11ed-abfa-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a43-db82-11ed-b532-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a44-db82-11ed-be1f-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a45-db82-11ed-97e1-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a46-db82-11ed-9cbc-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a47-db82-11ed-9c13-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a48-db82-11ed-8c9d-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a49-db82-11ed-afdc-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a4a-db82-11ed-9eab-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a4b-db82-11ed-a9e6-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a4c-db82-11ed-a455-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a4d-db82-11ed-a75a-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a4e-db82-11ed-9d4e-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a4f-db82-11ed-b572-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a50-db82-11ed-8ea0-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a51-db82-11ed-ad65-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a52-db82-11ed-9f13-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a53-db82-11ed-a203-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a54-db82-11ed-b750-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a55-db82-11ed-934a-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a56-db82-11ed-adec-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a57-db82-11ed-839b-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a58-db82-11ed-bc30-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a59-db82-11ed-a42e-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a5a-db82-11ed-9862-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a5b-db82-11ed-b7a4-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a5c-db82-11ed-a3d8-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a5d-db82-11ed-b082-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a5e-db82-11ed-aba7-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a5f-db82-11ed-a56d-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a60-db82-11ed-9d20-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a61-db82-11ed-8dbf-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a62-db82-11ed-aaf6-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a63-db82-11ed-aebb-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a64-db82-11ed-a715-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a65-db82-11ed-bb7a-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a66-db82-11ed-9335-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a67-db82-11ed-be15-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a68-db82-11ed-98d9-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a69-db82-11ed-9078-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a6a-db82-11ed-9883-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a6b-db82-11ed-8bbd-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70012a6c-db82-11ed-95c4-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'7001511f-db82-11ed-bf4f-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70015120-db82-11ed-a57f-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70015121-db82-11ed-aafd-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70015122-db82-11ed-a2b6-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70015123-db82-11ed-9e3d-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70015124-db82-11ed-8428-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70015126-db82-11ed-88cd-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70015127-db82-11ed-8025-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70015128-db82-11ed-be1c-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'70015129-db82-11ed-922e-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'7001512a-db82-11ed-98c2-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'7001512b-db82-11ed-b3a6-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'7001512c-db82-11ed-b674-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477', N'7001512d-db82-11ed-93fb-70a6ccc4b566', GETDATE());
+
+select * from dbo.[JoinedMember]  GRoupID where memberId = N'3622BBFB-EE0A-47'
+
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'78A212DB-926A-4828-85A3-E62E94A2CDF8',  N'3622BBFB-EE0A-47', GETDATE())
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'E4B262D9-B49D-43DF-819B-E31C0BE73477',  N'3622BBFB-EE0A-47', GETDATE())
+
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'EB06F381-A911-45',  N'3622BBFB-EE0A-47', GETDATE())
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'78A212DB-926A-4828-85A3-E62E94A2CDF8',  N'3622BBFB-EE0A-47', GETDATE())
+
+SELECT * from dbo.[Group]
+
+select DISTINCT(GroupId) from JoinedMember 
+
+select * from JoinedMember WHERE GroupId = '78A212DB-926A-4828-85A3-E62E94A2CDF8'
+
+select * from JoinedMember WHERE MemberId = '7001034d-db82-11ed-a300-70a6ccc4b566'
+DELETE JoinedMember
+
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'EB06F381-A911-45',  N'3622BBFB-EE0A-47', GETDATE())
+
+insert MESSAGE (Id, Content, CreatedTime, GroupId, SenderId) VALUES (NEWID(), N'Báo tiếng thái viết bằng tiếng việt', GETDATE(), '78A212DB-926A-4828-85A3-E62E94A2CDF8', '3622BBFB-EE0A-47')
+select * from [Message]

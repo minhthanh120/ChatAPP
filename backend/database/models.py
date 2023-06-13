@@ -1,17 +1,23 @@
 from sqlalchemy import create_engine, NVARCHAR, Column, Integer, String, DateTime, Boolean, ForeignKey
+from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from sqlalchemy.sql import func
 from typing import List
-from sqlalchemy.orm import validates, declarative_base, Mapped, relationship, mapped_column, Session, sessionmaker
+from sqlalchemy.orm import validates, declarative_base, Mapped, relationship, mapped_column, Session, sessionmaker, \
+    column_property
 from sqlalchemy.engine import URL
 import pyodbc
 from pydantic import BaseModel
 from uuid import uuid4
+
+from sqlalchemy.sql.coercions import name
+from sqlalchemy.sql.elements import ExpressionClauseList
+
 # import connection
 CONNECTION_STRING = "Driver={ODBC Driver 17 for SQL Server};Server=SERAPHINE\\SQLEXPRESS;database=CHATAPP;Trusted_Connection=Yes;MultipleActiveResultSets=true"
 
 connection_url = URL.create(
     "mssql+pyodbc", query={"odbc_connect": CONNECTION_STRING})
-engine = create_engine(connection_url)
+engine = create_engine(connection_url, echo=True)
 Session = sessionmaker(bind=engine)
 
 
@@ -30,14 +36,18 @@ class User(Base):
     joinedDate = mapped_column(
         'JoinedDate', DateTime, nullable=True, default=func.now())
     joinedGroup: Mapped[List["JoinedMember"]] = relationship(
-        back_populates='member', lazy="joined")
-    sended: Mapped[List["Message"]] = relationship(
-        back_populates='sender', lazy="joined")
+        back_populates='member')
+    sent: Mapped[List["Message"]] = relationship(
+        back_populates='sender')
     createdGroup: Mapped[List["Group"]] = relationship(
-        back_populates='creator', lazy="joined")
+        back_populates='creator')
     requested: Mapped[List["JoinRequest"]] = relationship(
-        back_populates="creator", lazy="joined")
+        back_populates="creator")
+    #reverse_fullname = column_property(" ".join('{0} {1}'.format(firstName, lastName).split(" ")[::-1]))
 
+    @hybrid_property
+    def get_fullname(self):
+        return self.firstName+" "+self.lastName
 
 class Group(Base):
     __tablename__ = 'Group'
@@ -49,11 +59,18 @@ class Group(Base):
     messages: Mapped[List["Message"]] = relationship(
         back_populates="group")
     joined: Mapped[List["JoinedMember"]] = relationship(
-        back_populates="group", lazy="joined")
+        back_populates="group")
     requested: Mapped[List["JoinRequest"]] = relationship(
         back_populates="group")
     creator: Mapped[User] = relationship(
         back_populates='createdGroup')
+    @hybrid_method
+    def is_member(self, userId : str):
+        if self.joined!=None or len(self.joined)>0:
+            for i in self.joined:
+                if i.memberId == userId:
+                    return True
+        return False
 
 
 class LastestMessage(Base):
@@ -75,9 +92,9 @@ class JoinRequest(Base):
     groupId = mapped_column('GroupId', NVARCHAR(450), ForeignKey("Group.Id"))
     accepted = mapped_column('Accepted', Boolean)
     group: Mapped[Group] = relationship(
-        back_populates='requested', lazy="joined")
+        back_populates='requested')
     creator: Mapped[User] = relationship(
-        back_populates='requested', lazy="joined")
+        back_populates='requested')
 
 
 class JoinedMember(Base):
@@ -88,9 +105,9 @@ class JoinedMember(Base):
                              ForeignKey('UserInfo.Id'))
     joinedTime = mapped_column('JoinedTime', DateTime, default=func.now())
     role = mapped_column('Role', Integer, nullable=True)
-    group: Mapped[Group] = relationship(back_populates='joined', lazy="joined")
+    group: Mapped[Group] = relationship(back_populates='joined')
     member: Mapped[User] = relationship(
-        back_populates='joinedGroup', lazy="joined")
+        back_populates='joinedGroup')
 
 
 class Message(Base):
@@ -101,9 +118,9 @@ class Message(Base):
     groupId = mapped_column('GroupId', NVARCHAR(450), ForeignKey('Group.Id'))
     senderId = mapped_column('SenderId', NVARCHAR(450),
                              ForeignKey('UserInfo.Id'))
-    sender: Mapped[User] = relationship(back_populates="sended", lazy="joined")
+    sender: Mapped[User] = relationship(back_populates="sent")
     group: Mapped[Group] = relationship(
-        back_populates="messages", lazy="joined")
+        back_populates="messages")
 # Authenticate Models
 
 

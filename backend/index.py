@@ -1,12 +1,23 @@
-from sqlalchemy.orm import joinedload
+from database.models import Session, Group, JoinedMember, User
 
-from database.models import Group, User, Session, JoinedMember
-
-session:Session = Session()
-g1 = session.get(Group, 'E4B262D9-B49D-43DF-819B-E31C0BE73477')
-g2 = session.query(Group).get('E4B262D9-B49D-43DF-819B-E31C0BE73477')
-group = session.query(Group).options(joinedload(Group.joined)).filter_by(id='E4B262D9-B49D-43DF-819B-E31C0BE73477').first()
+session = Session()
 
 
+def isMember(groupId, userId) -> bool:
+    print('1')
+    member: JoinedMember = session.query(JoinedMember).filter(
+        JoinedMember.memberId == userId, JoinedMember.groupId == groupId).first()
+    return member != None
 
-user = session.get(User, '7001034d-db82-11ed-a300-70a6ccc4b566')
+
+def isAdmin(groupId, userId) -> bool:
+    admin: JoinedMember = session.query(JoinedMember).filter(JoinedMember.memberId == userId,
+                                                             JoinedMember.groupId == groupId,
+                                                             JoinedMember.role != None).first()
+    return admin != None
+
+
+#recent = session.query(Group).filter(Group.joined.any(JoinedMember.memberId == '7001034d-db82-11ed-a300-70a6ccc4b566')).all()
+recent = session.query(Group).join(JoinedMember, Group.joined).order_by(JoinedMember.joinedTime.asc()).filter(JoinedMember.groupId == 'E4B262D9-B49D-43DF-819B-E31C0BE73477')\
+    .all()
+#recent:Group = session.query(Group).filter(Group.id == 'E4B262D9-B49D-43DF-819B-E31C0BE73477').first()

@@ -1,4 +1,4 @@
-import test_token
+
 from database.models import Session
 
 from fastapi import FastAPI, HTTPException, Depends, Response
@@ -35,5 +35,4 @@ PORT = 8080
 if __name__ == '__main__':
 
     app.include_router(router=router.router)
-    app.include_router(router=test_token.test_route, prefix='/test')
     uvicorn.run(app, host=HOST, port=PORT)

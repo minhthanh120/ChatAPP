@@ -19,7 +19,7 @@ class UserRepository:
         currentUser.firstName = user.firstName
         currentUser.lastName = user.lastName
         currentUser.phone = user.phone
-        currentUser.userName =user.userName
+        currentUser.userName = user.userName
         self.session.commit()
         
     def read(self, id:str):

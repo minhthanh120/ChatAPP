@@ -74,7 +74,7 @@ class UserPassword(BaseModel):
 # Schema
 class UserSchema(User):
     joinedGroup: Optional[list[JoinedMember]] = None
-    sended: Optional[list[Message]] = None
+    sent: Optional[list[Message]] = None
     createdGroup: Optional[list[Group]] = None
     requested: Optional[list[JoinRequest]] = None
 

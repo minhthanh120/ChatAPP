@@ -5,7 +5,6 @@ from starlette import status
 
 from database.models import User, UserAuth
 from database.schemas import Login, Register
-from main import get_session
 from repositories.authenticate_repository import authorize_repo as authenticate_repository
 from  repositories.user_repository import user_repo as user_repository
 from utils import create_access_token, create_refresh_token, get_hashed_password
