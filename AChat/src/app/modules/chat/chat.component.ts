@@ -15,6 +15,7 @@ export class ChatComponent implements OnInit {
   user: any;
   openAddGroup = false;
   openSearch = false;
+  public groupId!: string;
   /**
    *
    */

@@ -5,12 +5,14 @@ import { LoginComponent } from './modules/login/login.component';
 import { RegisterComponent } from './modules/register/register.component';
 import { ChatComponent } from './modules/chat/chat.component';
 import { UserComponent } from './modules/user/user.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 const routes:Routes=[
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
   {path:'', component:ChatComponent},
   {path:'user', component:UserComponent},
+  {path:'**', component:PagenotfoundComponent}
 ]
 
 @NgModule({
