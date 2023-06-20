@@ -8,7 +8,7 @@ import { AuthorizeService } from 'src/app/services/authorize.service';
   styleUrls: ['./message.component.css']
 })
 //@Injectable()
-export class MessageComponent implements OnInit, OnDestroy {
+export class MessageComponent implements OnInit {
   /**
    *
    */
@@ -21,9 +21,6 @@ export class MessageComponent implements OnInit, OnDestroy {
     })
     console.log(this.id);
   }
-  ngOnDestroy() {
-    console.log('unsub');
-    this.sub.unsubcribe();
-  }
+  
 }
 
