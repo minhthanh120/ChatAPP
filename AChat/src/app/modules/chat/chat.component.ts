@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/interface/user';
 import { AuthorizeService } from 'src/app/services/authorize.service';
 import { UserService } from 'src/app/services/user.service';
@@ -16,6 +16,8 @@ export class ChatComponent implements OnInit {
   openAddGroup = false;
   openSearch = false;
   public groupId!: string;
+  public idGroup:string = "";
+  
   /**
    *
    */
@@ -23,6 +25,7 @@ export class ChatComponent implements OnInit {
     //this.ngOnInit();
   }
   ngOnInit(): void {
+    
     if (localStorage.getItem(this.authorize.token) != undefined) {
       this.router.navigate(['/']);
       let token = localStorage.getItem(this.authorize.token);

@@ -1,5 +1,5 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthorizeService } from 'src/app/services/authorize.service';
 
 @Component({
@@ -8,11 +8,22 @@ import { AuthorizeService } from 'src/app/services/authorize.service';
   styleUrls: ['./message.component.css']
 })
 //@Injectable()
-export class MessageComponent {
-/**
- *
- */
-
-  
+export class MessageComponent implements OnInit, OnDestroy {
+  /**
+   *
+   */
+  public id: string = '';
+  private sub: any;
+  constructor(private route: ActivatedRoute) { }
+  ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.id = params['id'];
+    })
+    console.log(this.id);
+  }
+  ngOnDestroy() {
+    console.log('unsub');
+    this.sub.unsubcribe();
+  }
 }
 
