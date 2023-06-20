@@ -28,7 +28,7 @@ def get_session():
         session.close()
 
 @app.get("/")
-def read_is_first():
+def read_it_first():
     return "Hello"
 HOST = '127.0.0.1'
 PORT = 8080
