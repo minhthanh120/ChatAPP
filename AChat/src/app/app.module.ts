@@ -19,6 +19,8 @@ import { AddgroupComponent } from './modules/addgroup/addgroup.component';
 import { CustomHttpInterceptor } from './services/http-interceptor';
 import { RecentComponent } from './modules/chat/recent/recent.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { PopupMessagesComponent } from './modules/popup-messages/popup-messages.component';
+import { MenuComponent } from './modules/menu/menu.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,9 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     SearchComponent,
     AddgroupComponent,
     RecentComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    PopupMessagesComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

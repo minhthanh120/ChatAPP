@@ -17,6 +17,7 @@ export class ChatComponent implements OnInit {
   openSearch = false;
   public groupId!: string;
   public idGroup:string = "";
+  popup = true;
   
   /**
    *
@@ -60,5 +61,8 @@ export class ChatComponent implements OnInit {
   }
   formAddGroup(){
     this.openAddGroup=!this.openAddGroup;
+  }
+  openPopup(){
+    this.popup = !this.popup
   }
 }

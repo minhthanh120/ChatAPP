@@ -81,7 +81,7 @@ export class AuthorizeService {
             localStorage.setItem(this.token, JSON.stringify(res));
             return this.token;
           }
-        )
+        ),
       )
       
 

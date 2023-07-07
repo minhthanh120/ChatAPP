@@ -25,6 +25,8 @@ export class AddgroupComponent implements OnInit {
     groupName: "",
     creatorId: "",
     createdTime: undefined,
+    members: undefined,
+    messages: undefined,
   };
   constructor(private chatComp: ChatComponent, private userSerive: UserService, private groupService: GroupService, private utils: UtilsService) {
 
