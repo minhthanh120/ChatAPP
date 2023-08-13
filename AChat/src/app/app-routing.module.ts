@@ -11,12 +11,10 @@ import { MessageComponent } from './modules/chat/message/message.component';
 const routes:Routes=[
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
-  {path:'', component:ChatComponent, children:[
-    {path:'message/:id', component:MessageComponent},
-  ]
-},
+  {path:'', component:ChatComponent},
   {path:'user', component:UserComponent},
   {path:'**', component:PagenotfoundComponent},
+  {path:'message/:id', component:MessageComponent}
 ]
 
 @NgModule({

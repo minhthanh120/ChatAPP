@@ -2,3 +2,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.indicator{
+    transition: left .4s;
+  }
+  .scrollbar-w-2::-webkit-scrollbar {
+    width: 0.45rem;
+    height: 0.25rem;
+  }
+  
+  .scrollbar-track-blue-lighter::-webkit-scrollbar-track {
+    --bg-opacity: 1;
+    background-color: #ffffff;
+  }
+  
+  .scrollbar-thumb-blue::-webkit-scrollbar-thumb {
+    --bg-opacity: 1;
+    background-color: #858484;
+  }
+  
+  .scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
+    border-radius: 0.25rem;
+  }

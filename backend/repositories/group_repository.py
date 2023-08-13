@@ -6,8 +6,6 @@ from main import get_session
 from repositories.member_repository import member_repo
 
 
-
-
 class GroupRepository:
     def __init__(self):
         self.session: Session = get_session().__next__()

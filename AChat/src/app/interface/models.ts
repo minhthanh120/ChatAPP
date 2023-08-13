@@ -6,3 +6,7 @@ export interface Group{
     "members":any;
     "messages":any;
 }
+export interface MessageData {
+    message: string;
+    time?: string;
+  }

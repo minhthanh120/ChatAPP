@@ -21,6 +21,7 @@ import { RecentComponent } from './modules/chat/recent/recent.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { PopupMessagesComponent } from './modules/popup-messages/popup-messages.component';
 import { MenuComponent } from './modules/menu/menu.component';
+import { InfoConversationComponent } from './modules/chat/info-conversation/info-conversation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { MenuComponent } from './modules/menu/menu.component';
     RecentComponent,
     PagenotfoundComponent,
     PopupMessagesComponent,
-    MenuComponent
+    MenuComponent,
+    InfoConversationComponent
   ],
   imports: [
     BrowserModule,

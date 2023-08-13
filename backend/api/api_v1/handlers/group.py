@@ -72,5 +72,11 @@ def _add_member(id: str, member: UserSchema, user: UserSchema = Depends(get_curr
         return HTTPException(404, "An exception occurred")
 
 
-
-
+@group_router.get("/allNotInGroup/{key}")
+def _searchbyEmail(groupId:str):
+    try:
+        if(len(key)>0):
+            lstUser = user_repository(key)
+            return lstUser
+    except:
+        return HTTPException(404, "An exception occurred")
