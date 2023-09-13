@@ -3,9 +3,8 @@ from typing import List
 from fastapi import APIRouter, HTTPException, Depends
 from starlette import status
 
-from database.models import Group
 from repositories.group_repository import group_repo
-from database.schemas import GroupSchema, UserSchema
+from database.schemas import GroupSchema, UserSchema, Group
 from repositories.member_repository import member_repo
 from security import get_current_user
 
@@ -34,6 +33,8 @@ def _get_recent_message(user:UserSchema = Depends(get_current_user)):
 @group_router.get("/{id}")
 def _get_group(id:str, user: UserSchema = Depends(get_current_user)):
     try:
+        if group_repo.read(id=id) == None:
+            return HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="This group has been deleted or never be created before")
         if member_repo.isMember(id, user.id) == False:
             return HTTPException(status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail="Method not allowed")
         group:Group = group_repo.read(id, True, True)
@@ -41,6 +42,28 @@ def _get_group(id:str, user: UserSchema = Depends(get_current_user)):
     except Exception as e:
         print(e)
         return HTTPException(404, "An exception occurred")
+@group_router.post("/editinfo")
+def _edit_groupinfo(group:GroupSchema, user:UserSchema = Depends(get_current_user)):
+    try:
+        if group_repo.read(id=group.id) == None:
+            return HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="This group has been deleted or never be created before")
+        if member_repo.isMember(groupId = group.id,userId= user.id) == False:
+            return HTTPException(status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail="Method not allowed")
+        return group_repo.edit(group=group)
+    except Exception as e:
+        print(e)
+        return HTTPException(404, "An exception occurred")        
+@group_router.post("/editmembers")
+def _edit_groupmembers(group:GroupSchema, user:UserSchema = Depends(get_current_user)):
+    try:
+        if group_repo.read(id=group.id) == None:
+            return HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="This group has been deleted or never be created before")
+        if member_repo.isMember(groupId = group.id,userId= user.id) == False:
+            return HTTPException(status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail="Method not allowed")
+        return group_repo.edit(group=group)
+    except Exception as e:
+        print(e)
+        return HTTPException(404, "An exception occurred")   
 
 @group_router.get("/delete/{id}")
 def _del_group(id:str, user: UserSchema = Depends(get_current_user)):
@@ -53,24 +76,28 @@ def _del_group(id:str, user: UserSchema = Depends(get_current_user)):
         print(e)
         return HTTPException(404, "An exception occurred")
 
-@group_router.post("/addmembers")
-def _add_members(id: str, members: List[UserSchema], user: UserSchema = Depends(get_current_user)):
-    try:
-        if member_repo.isAdmin(id, user.id) == False:
-            return HTTPException(status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail="Method not allowed")
-    except Exception as e:
-        print(e)
-        return HTTPException(404, "An exception occurred")
-
 @group_router.post("/addmember")
-def _add_member(id: str, member: UserSchema, user: UserSchema = Depends(get_current_user)):
+def _add_member(id: str, memberid:str, user: UserSchema = Depends(get_current_user)):
     try:
         if member_repo.isAdmin(id, user.id) == False:
             return HTTPException(status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail="Method not allowed")
+        if member_repo.isMember(groupId=id, userId=memberid) == True or member_repo.isAdmin(groupId=id, userId=memberid) == True:
+            return HTTPException(status_code=status.HTTP_409_CONFLICT, detail="This member already in your group")
+        return member_repo.create(groupId=id, memberId=memberid)
     except Exception as e:
         print(e)
         return HTTPException(404, "An exception occurred")
 
-
+@group_router.post("/removemember")
+def _remove_member(id: str, memberid: str, user: UserSchema = Depends(get_current_user)):
+    try:
+        if member_repo.isAdmin(id, user.id) == False:
+            return HTTPException(status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail="Method not allowed")
+        if member_repo.isMember(groupId=id, userId=memberid) == False:
+            return HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Don't have this member in your group or this member has been kick-out")
+        return member_repo.delete(groupId=id, memberId=memberid)
+    except Exception as e:
+        print(e)
+        return HTTPException(404, "An exception occurred")
 
 

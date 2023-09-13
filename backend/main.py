@@ -33,6 +33,5 @@ def read_is_first():
 HOST = '127.0.0.1'
 PORT = 8089
 if __name__ == '__main__':
-
     app.include_router(router=router.router)
     uvicorn.run(app, host=HOST, port=PORT)

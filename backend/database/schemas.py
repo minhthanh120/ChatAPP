@@ -41,12 +41,17 @@ class Login(BaseModel):
     username: str
     password: str
 
+class ResetPassword(BaseModel):
+    email:str
+    password:str
 class Token(BaseModel):
     access_token: str
     token_type: str
 
 class TokenData(BaseModel):
     username: str | None = None
+    exp:int
+    sub:str|None = None
 class Register(BaseModel):
     email: str
     password: str

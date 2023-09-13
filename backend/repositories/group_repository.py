@@ -22,7 +22,12 @@ class GroupRepository:
         currentGroup = self.read(group.id)
         currentGroup.groupName = group.groupName
         self.session.commit()
-        pass
+        return 'Edit group success'
+    def rename(self, id:str, groupName:str):
+        currentGroup = self.read(group.id)
+        currentGroup.groupName = group.groupName
+        self.session.commit()
+        return 'Edit group success'
     def read(self, id, getmember=False, getmessages=False):
         currentGroup:Group = self.session.query(Group)\
             .options(

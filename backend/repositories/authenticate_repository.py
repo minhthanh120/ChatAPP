@@ -1,5 +1,5 @@
 from database.models import UserAuth, Session
-from database.schemas import Login, User, Register, Token
+from database.schemas import Login, User, Register, Token, ResetPassword
 from fastapi import HTTPException, Depends
 from repositories.user_repository import user_repo as user_repository
 
@@ -52,7 +52,14 @@ class AuthorizeRepository:
             else:
                 return HTTPException(status.HTTP_401_UNAUTHORIZED, 'Password not right')
         return HTTPException(status.HTTP_404_NOT_FOUND, 'Not found User')
-
+    
+    def resetpassword(self, model:ResetPassword):
+        currentUser: UserAuth = self.session.query(UserAuth).filter(UserAuth.email == model.email).first()
+        if (currentUser != None):
+            currentUser.password = get_hashed_password(model.password)
+            self.session.commit()
+            return 'Reset password success'
+        return HTTPException(status.HTTP_404_NOT_FOUND, 'Not found User')
     def currentUser(self, token: str):
         pass
 

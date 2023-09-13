@@ -9,12 +9,17 @@ class MemberRepository:
         joined.memberId = memberId
         self.session.add(joined)
         self.session.commit()
+        return 'Added Member'
     def edit(self):
         pass
     def read(self):
         pass
-    def delete(self):
-        pass
+    def delete(self, groupId, memberId):
+        member: JoinedMember = self.session.query(JoinedMember).filter(
+            JoinedMember.memberId == memberId, JoinedMember.groupId == groupId).first()
+        self.session.delete(member)
+        self.session.commit()
+        return 'Deleted Member'
     def isMember(self, groupId, userId):
         member: JoinedMember = self.session.query(JoinedMember).filter(
             JoinedMember.memberId == userId, JoinedMember.groupId == groupId).first()

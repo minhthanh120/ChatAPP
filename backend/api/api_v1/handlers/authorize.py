@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from starlette import status
 
 from database.models import User, UserAuth
-from database.schemas import Login, Register
+from database.schemas import Login, Register, ResetPassword
 from repositories.authenticate_repository import authorize_repo as authenticate_repository
 from  repositories.user_repository import user_repo as user_repository
 from utils import create_access_token, create_refresh_token, get_hashed_password
@@ -26,3 +26,6 @@ def register(register: Register):
 @auth_route.post("/refresh")
 def _refresh_token():
     pass
+@auth_route.post("/resetpassword")
+def _reset_password(model: ResetPassword):
+    return authenticate_repository.resetpassword(model=model)
