@@ -1,19 +1,18 @@
-from pydantic import BaseModel, constr, datetime_parse
+from pydantic import BaseModel, constr
 from datetime import datetime
 from typing import Optional
 class User(BaseModel):
     id: constr(max_length=450)
-    userName: constr(max_length=50) = None
+    userName: constr(max_length=50)
     firstName: constr(max_length=25)
     lastName: constr(max_length=25)
     email: constr(max_length=100)
-    avatar: constr(max_length=255) = None
+    avatar: constr(max_length=255)
     phone: Optional[constr(max_length=11)] = None
-    joinedDate: datetime = None
 class Group(BaseModel):
-    id: constr(max_length=450) = None
+    id: constr(max_length=450)
     groupName: str
-    createdTime: datetime = None
+    createdTime: datetime
     creatorId: constr(max_length=450)
 class JoinedMember(BaseModel):
     id: constr(max_length=450)
@@ -47,9 +46,7 @@ class Token(BaseModel):
     token_type: str
 
 class TokenData(BaseModel):
-    exp:str
-    sub:str
-    #username: str | None = None
+    username: str | None = None
 class Register(BaseModel):
     email: str
     password: str
@@ -74,14 +71,14 @@ class UserPassword(BaseModel):
 # Schema
 class UserSchema(User):
     joinedGroup: Optional[list[JoinedMember]] = None
-    sent: Optional[list[Message]] = None
+    sended: Optional[list[Message]] = None
     createdGroup: Optional[list[Group]] = None
     requested: Optional[list[JoinRequest]] = None
 
 class GroupSchema(Group):
-    messages: Optional[list[Message]] = []
-    joined: Optional[list[JoinedMember]] = []
-    requested: Optional[list[JoinRequest]] = []
+    messages: Optional[list[Message]] = None
+    joined: Optional[list[JoinedMember]] = None
+    requested: Optional[list[JoinRequest]] = None
     creator: Optional[User] = None
 
 class JoinedMemberSchema(JoinedMember):
