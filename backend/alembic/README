@@ -1,1 +1,4 @@
 Generic single-database configuration.
+Activate venv
+alembic revision --autogenerate -m "comment"
+alembic upgrade head

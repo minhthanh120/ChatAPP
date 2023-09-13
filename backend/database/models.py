@@ -8,12 +8,12 @@ from sqlalchemy.engine import URL
 import pyodbc
 from pydantic import BaseModel
 from uuid import uuid4
-
 from sqlalchemy.sql.coercions import name
 from sqlalchemy.sql.elements import ExpressionClauseList
-
+from helper import read_config
+config = read_config()
 # import connection
-CONNECTION_STRING = "Driver={ODBC Driver 17 for SQL Server};Server=SERAPHINE\\SQLEXPRESS;database=CHATAPP;Trusted_Connection=Yes;MultipleActiveResultSets=true"
+CONNECTION_STRING = config['ConnectionString']['EngineUrl']
 
 connection_url = URL.create(
     "mssql+pyodbc", query={"odbc_connect": CONNECTION_STRING})
@@ -33,6 +33,7 @@ class User(Base):
     email = mapped_column('Email', String(100))
     avatar = mapped_column('Avatar', String(255), nullable=True)
     phone = mapped_column('Phone', String(15), nullable=True)
+    status = mapped_column('Status', Integer, nullable=True)
     joinedDate = mapped_column(
         'JoinedDate', DateTime, nullable=True, default=func.now())
     joinedGroup: Mapped[List["JoinedMember"]] = relationship(
@@ -56,6 +57,7 @@ class Group(Base):
     createdTime = mapped_column('CreatedTime', DateTime, default=func.now())
     creatorId = mapped_column(
         'CreatorId', NVARCHAR(450), ForeignKey("UserInfo.Id"))
+    status = mapped_column('Status', Integer, nullable=True)    
     messages: Mapped[List["Message"]] = relationship(
         back_populates="group")
     joined: Mapped[List["JoinedMember"]] = relationship(
@@ -81,7 +83,7 @@ class LastestMessage(Base):
         450), ForeignKey("UserInfo.Id"), primary_key=True)
     messageId = mapped_column('MessageId', NVARCHAR(450), nullable=True)
     watchedTime = mapped_column('WatchedTime', DateTime, nullable=True)
-
+    status = mapped_column('Status', Integer, nullable=True)
 
 class JoinRequest(Base):
     __tablename__ = 'JoinRequest'
@@ -95,6 +97,7 @@ class JoinRequest(Base):
         back_populates='requested')
     creator: Mapped[User] = relationship(
         back_populates='requested')
+    status = mapped_column('Status', Integer, nullable=True)
 
 
 class JoinedMember(Base):
@@ -105,6 +108,7 @@ class JoinedMember(Base):
                              ForeignKey('UserInfo.Id'))
     joinedTime = mapped_column('JoinedTime', DateTime, default=func.now())
     role = mapped_column('Role', Integer, nullable=True)
+    status = mapped_column('Status', Integer, nullable=True)
     group: Mapped[Group] = relationship(back_populates='joined')
     member: Mapped[User] = relationship(
         back_populates='joinedGroup')
@@ -118,6 +122,7 @@ class Message(Base):
     groupId = mapped_column('GroupId', NVARCHAR(450), ForeignKey('Group.Id'))
     senderId = mapped_column('SenderId', NVARCHAR(450),
                              ForeignKey('UserInfo.Id'))
+    status = mapped_column('Status', Integer, nullable=True)
     sender: Mapped[User] = relationship(back_populates="sent")
     group: Mapped[Group] = relationship(
         back_populates="messages")
@@ -132,6 +137,7 @@ class UserAuth(Base):
     isAuthenticated = mapped_column('IsAuthenticated', Boolean, nullable=True)
     password = mapped_column('HashedPassword', String)
     saltString = mapped_column('SaltString', String)
+    status = mapped_column('Status', Integer, nullable=True)
     # password:Mapped["UserPassword"] = relationship(back_populates="user", lazy="joined")
 # class UserPassword(Base):
 #     __tablename__ = 'UserPassword'
@@ -148,7 +154,7 @@ class Token(Base):
         450), ForeignKey('UserAuth.Id'), primary_key=True)
     tokenValue = mapped_column('TokenValue', NVARCHAR(450))
     createdTime = mapped_column('CreatedTime', DateTime, default=func.now())
-
+    status = mapped_column('Status', Integer, nullable=True)
 
 # if __name__ == '__main__':
 #     conn = pyodbc.connect(CONNECTION_STRING)

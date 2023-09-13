@@ -1,6 +1,6 @@
 
 from database.models import Session
-
+from helper import read_config
 from fastapi import FastAPI, HTTPException, Depends, Response
 from api.api_v1 import router
 import uvicorn
@@ -30,8 +30,9 @@ def get_session():
 @app.get("/")
 def read_is_first():
     return "Hello"
-HOST = '127.0.0.1'
-PORT = 8089
+
+config = read_config()
+
 if __name__ == '__main__':
     app.include_router(router=router.router)
-    uvicorn.run(app, host=HOST, port=PORT)
+    uvicorn.run(app, host=config['URLBackend']['host'], port=int(config['URLBackend']['port']))

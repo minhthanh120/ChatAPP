@@ -9,24 +9,28 @@ class User(BaseModel):
     email: constr(max_length=100)
     avatar: constr(max_length=255)
     phone: Optional[constr(max_length=11)] = None
+    status:int = None
 class Group(BaseModel):
     id: constr(max_length=450)
     groupName: str
     createdTime: datetime
     creatorId: constr(max_length=450)
+    status:int = None
+
 class JoinedMember(BaseModel):
     id: constr(max_length=450)
     groupId: constr(max_length=450)
     memberId: constr(max_length=450)
     joinedTime: datetime
     role: int
-
+    status:int = None
 class JoinRequest(BaseModel):
     id: constr(max_length=450)
     createdTime: datetime
     creatorId: constr(max_length=450)
     groupId: constr(max_length=450)
     accepted: bool
+    status:int = None
 
 class Message(BaseModel):
     id: constr(max_length=450)
@@ -34,6 +38,7 @@ class Message(BaseModel):
     createdTime: datetime
     groupId: constr(max_length=450)
     senderId: constr(max_length=450)
+    status:int = None
 
 
 # authorize
@@ -68,6 +73,7 @@ class UserAuth(BaseModel):
     email: str = None
     userName: str
     isAuthenticated: bool = None
+    status:int = None
 
 class UserPassword(BaseModel):
     userId: constr(max_length=450)
