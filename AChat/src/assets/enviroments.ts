@@ -1,3 +1,3 @@
 export const enviroment = {
-    backendServer : "http://127.0.0.1:8089",
+    backendServer : "http://localhost:5048/api",
 }

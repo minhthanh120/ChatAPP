@@ -7,6 +7,7 @@ import { Buffer } from 'buffer';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 import { enviroment } from 'src/assets/enviroments';
 import { Token } from '../interface/token';
+import { JwtHelperService } from "@auth0/angular-jwt";
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -24,7 +25,7 @@ export class AuthorizeService {
 
   //isLoggedIn: boolean = false;
   response: string = '';
-
+  helper = new JwtHelperService();
   public token: any;
   //private handleError: HandleError;
   constructor(private http: HttpClient,) {
@@ -36,7 +37,7 @@ export class AuthorizeService {
     return this.http.post<any>(enviroment.backendServer + subdomain, register)
       .pipe(
         map((res) => {
-          if (res.refresh_token == undefined) {
+          if (res.refreshToken == undefined) {
             throw new Error(res.detail);
           }
           localStorage.setItem(this.token, JSON.stringify(res));
@@ -48,37 +49,39 @@ export class AuthorizeService {
   }
 
   login(login: Login) {
-    const body = new HttpParams()
-      .set('username', login.email.toString())
-      .set('password', login.password.toString())
-      .set('grant_type', 'password');
+    const body:Object ={
+      'userName': login.email.toString(),
+      'password': login.password.toString()
+
+    }
+      //.set('grant_type', 'password');
 
     const OAUTH_CLIENT = 'express-client';
     const OAUTH_SECRET = 'express-secret';
 
     const HTTP_OPTIONS = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json',
+        
+        // 'Accept':'application/json'
         //,
         //Authorization: 'Basic ' + Buffer.from(OAUTH_CLIENT + ':' + OAUTH_SECRET).toString('base64')
       })
     };
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-urlencoded'
-    })
+
     const subdomain = "/login";
     return this.http.post<any>(enviroment.backendServer + subdomain, body, HTTP_OPTIONS)
       .pipe(
         map(
           (res) => {
-            if (res.refresh_token == undefined) {
-              console.log(res.detail)
-              return throwError(res.detail);
-            }
-
-            console.log(res)
+            // if (res.refreshToken == undefined) {
+            //   console.log(res.detail)
+            //   return throwError(res.detail);
+            // }
             localStorage.setItem(this.token, JSON.stringify(res));
+            var decodeToken = this.helper.decodeToken(res.accessToken);
+            var expDate = this.helper.getTokenExpirationDate(res.accessToken);
             return this.token;
           }
         )

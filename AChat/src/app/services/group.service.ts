@@ -15,7 +15,7 @@ export class GroupService {
 
   createGroup(group:any, members:any){
     const substring1 = "/group";
-    const substring2 = "/add";
+    const substring2 = "/create";
     const body={group:group, members:members}
     return this.http.post<any>(enviroment.backendServer+substring1+substring2, body).pipe(
     )

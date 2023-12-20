@@ -26,7 +26,7 @@ export class ChatComponent implements OnInit {
       this.router.navigate(['/']);
       let token = localStorage.getItem(this.authorize.token);
       let object_token = JSON.parse(token!)
-      const access_token = object_token.access_token;
+      const access_token = object_token.accessToken;
       this.userService.getCurrentUser(access_token).subscribe(data => {
         this.user = data;
         if (this.user.firstName != null && this.user.lastName != null) {
@@ -38,8 +38,6 @@ export class ChatComponent implements OnInit {
       console.log('not authorize');
       this.router.navigate(['/login']);
     }
-
-    //throw new Error('Method not implemented.');
   }
 
   logOutOnclick() {
@@ -54,7 +52,7 @@ export class ChatComponent implements OnInit {
       this.isShow = true;
     }
   }
-  formAddGroup(){
-    this.openAddGroup=!this.openAddGroup;
+  formAddGroup() {
+    this.openAddGroup = !this.openAddGroup;
   }
 }

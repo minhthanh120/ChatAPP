@@ -1,6 +1,6 @@
 export interface Group{
     id: string|undefined;
-    groupName: string;
-    creatorId: string;
+    name: string;
+    createdBy: string|undefined;
     createdTime: string|undefined;
 }

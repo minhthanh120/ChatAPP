@@ -37,7 +37,7 @@ export class UserService {
   }
   searchbyEmail(key: string): Observable<User[]> {
     const subdomain1 = '/user';
-    const subdomain2 = '/searchbyEmail';
+    const subdomain2 = '/searchUser';
     return this.http.get<User[]>(enviroment.backendServer + subdomain1 + subdomain2 + "/" + key).pipe(
       tap(_ => console.log('fetched user')),
       catchError(this.handleError<User[]>('searchbyEmail', []))

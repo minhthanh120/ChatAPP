@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     let token = localStorage.getItem(this.authorize.token);
     let object_token = JSON.parse(token!);
-    const access_token = object_token.access_token;
+    const access_token = object_token.accessToken;
     this.userService.getCurrentUser(access_token).subscribe();
     const localUser = localStorage.getItem("user");
     this.user = JSON.parse(localUser!);
@@ -44,7 +44,7 @@ export class UserComponent implements OnInit {
       .subscribe();
     let token = localStorage.getItem(this.authorize.token);
     let object_token = JSON.parse(token!)
-    const access_token = object_token.access_token;
+    const access_token = object_token.accessToken;
     this.userService.getCurrentUser(access_token!).subscribe();
   }
   onChange() {
