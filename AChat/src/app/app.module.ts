@@ -18,6 +18,10 @@ import { SearchComponent } from './modules/chat/search/search.component';
 import { AddgroupComponent } from './modules/addgroup/addgroup.component';
 import { CustomHttpInterceptor } from './services/http-interceptor';
 import { RecentComponent } from './modules/chat/recent/recent.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { PopupMessagesComponent } from './modules/popup-messages/popup-messages.component';
+import { MenuComponent } from './modules/menu/menu.component';
+import { InfoConversationComponent } from './modules/chat/info-conversation/info-conversation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +35,11 @@ import { RecentComponent } from './modules/chat/recent/recent.component';
     UserComponent,
     SearchComponent,
     AddgroupComponent,
-    RecentComponent
+    RecentComponent,
+    PagenotfoundComponent,
+    PopupMessagesComponent,
+    MenuComponent,
+    InfoConversationComponent
   ],
   imports: [
     BrowserModule,

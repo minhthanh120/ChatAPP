@@ -328,9 +328,43 @@ select DISTINCT(GroupId) from JoinedMember
 select * from JoinedMember WHERE GroupId = '78A212DB-926A-4828-85A3-E62E94A2CDF8'
 
 select * from JoinedMember WHERE MemberId = '7001034d-db82-11ed-a300-70a6ccc4b566'
+select * from JoinedMember WHERE MemberId = '3622BBFB-EE0A-47'
+
 DELETE JoinedMember
 
 insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), N'EB06F381-A911-45',  N'3622BBFB-EE0A-47', GETDATE())
 
-insert MESSAGE (Id, Content, CreatedTime, GroupId, SenderId) VALUES (NEWID(), N'Báo tiếng thái viết bằng tiếng việt', GETDATE(), '78A212DB-926A-4828-85A3-E62E94A2CDF8', '3622BBFB-EE0A-47')
+insert MESSAGE (Id, Content, CreatedTime, GroupId, SenderId) VALUES (NEWID(), N'Báo tiếng việt viết bằng tiếng thái', GETDATE(), '78A212DB-926A-4828-85A3-E62E94A2CDF8', '3622BBFB-EE0A-47')
 select * from [Message]
+
+select DISTINCT GroupId * from Message
+
+SELECT [Message].[Id] AS [Message_Id], [Message].[Content] AS [Message_Content], [Message].[CreatedTime] AS [Message_CreatedTime], [Message].[GroupId] AS [Message_GroupId], [Message].[SenderId] AS [Message_SenderId] 
+FROM [Message] 
+WHERE [Message].[GroupId] = '78A212DB-926A-4828-85A3-E62E94A2CDF8'
+GROUP BY [Message].[GroupId]
+
+DECLARE @Id NVARCHAR(50)
+set @Id = NEWID();
+SELECT @Id
+
+insert dbo.[Group](Id,GroupName, CreatedTime, CreatorId) values(@Id, N'Nhóm này ms lập', GETDATE(), N'70015135-db82-11ed-8681-70a6ccc4b566')
+
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), @Id, N'70015135-db82-11ed-8681-70a6ccc4b566', GETDATE())
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), @Id, N'70015125-db82-11ed-9c4f-70a6ccc4b566', GETDATE())
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), @Id, N'7001034d-db82-11ed-a300-70a6ccc4b566', GETDATE())
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), @Id, N'7001034e-db82-11ed-a794-70a6ccc4b566', GETDATE())
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), @Id, N'70012a42-db82-11ed-abfa-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), @Id, N'70012a43-db82-11ed-b532-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), @Id, N'70012a44-db82-11ed-be1f-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), @Id, N'70012a45-db82-11ed-97e1-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), @Id, N'70012a46-db82-11ed-9cbc-70a6ccc4b566', GETDATE());
+insert JoinedMember(Id, GroupId, MemberId, JoinedTime) VALUES(NEWID(), @Id, N'3622BBFB-EE0A-47', GETDATE());
+insert MESSAGE (Id, Content, CreatedTime, GroupId, SenderId) VALUES (NEWID(), N'Tin nhắn của tui đêy', GETDATE(), '8EF2CE34-0D82-4E35-AB9C-3D9847AADE9E', '3622BBFB-EE0A-47')
+
+delete [Group] where id = 'B1A7DA31-5A42-4287-9E3A-2C80DFB78487'
+delete [Group] where id = 'A8F4C310-D368-4583-9616-127F8D224ADB'
+select * from [Group]
+
+delete JoinedMember WHERE GroupId = 'B1A7DA31-5A42-4287-9E3A-2C80DFB78487'
+delete JoinedMember WHERE GroupId = 'A8F4C310-D368-4583-9616-127F8D224ADB'

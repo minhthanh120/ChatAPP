@@ -84,7 +84,7 @@ export class AuthorizeService {
             var expDate = this.helper.getTokenExpirationDate(res.accessToken);
             return this.token;
           }
-        )
+        ),
       )
       
 

@@ -25,6 +25,22 @@ export class UserService {
         return res;
       }));
   }
+  getRecentMessage(token: string) {
+    const subdomain = '/group/recentmessage';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token.toString()
+      })
+    };
+    return this.http.get<any>(enviroment.backendServer + subdomain, httpOptions)
+      .pipe(
+        map(
+          (res) => {
+            console.log(res);
+            return res;
+          }));
+  }
 
   updateUserInfo(userInfo: any) {
     const subdomain1 = '/user';

@@ -20,6 +20,10 @@ export class GroupService {
     return this.http.post<any>(enviroment.backendServer+substring1+substring2, body).pipe(
     )
   }
+  sendMesssage(message:any, token:any){
+    const substring = "/message/add";
+    return this.http.post<any>(enviroment.backendServer+substring, message).pipe();
+  }
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

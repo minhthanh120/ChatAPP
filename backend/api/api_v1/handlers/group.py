@@ -101,3 +101,11 @@ def _remove_member(id: str, memberid: str, user: UserSchema = Depends(get_curren
         return HTTPException(404, "An exception occurred")
 
 
+@group_router.get("/allNotInGroup/{key}")
+def _searchbyEmail(groupId:str):
+    try:
+        if(len(key)>0):
+            lstUser = user_repository(key)
+            return lstUser
+    except:
+        return HTTPException(404, "An exception occurred")

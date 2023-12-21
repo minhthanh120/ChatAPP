@@ -1,0 +1,14 @@
+<div id="toast-top-right" class="fixed flex flex-col divide-x space-y-2 top-5 right-5">
+        <div class="ml-auto items-center w-fit max-w-xs p-4 mr-1 text-gray-500 bg-white divide-gray-200 rounded-lg shadow dark:text-gray-400 dark:divide-gray-700  dark:bg-gray-800"
+        *ngFor="let notif of push">
+            <button
+                class="w-5 h-5 absolute -right-2 -top-2 bg-slate-0 bg-slate-100 hover:bg-slate-300 rounded-full border-2 border-red-600 ">
+                <svg class="text-red-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="text-sm font-normal">{{notif.message}}</div>
+        </div>
+
+</div>
