@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/interface/user';
 import { AuthorizeService } from 'src/app/services/authorize.service';
@@ -18,7 +18,7 @@ export class ChatComponent implements OnInit {
   public groupId!: string;
   public idGroup:string = "";
   popup = true;
-  
+  isSearching = false;
   /**
    *
    */
@@ -26,23 +26,13 @@ export class ChatComponent implements OnInit {
     //this.ngOnInit();
   }
   ngOnInit(): void {
-    
     if (localStorage.getItem(this.authorize.token) != undefined) {
-      this.router.navigate(['/']);
-      let token = localStorage.getItem(this.authorize.token);
-      let object_token = JSON.parse(token!)
-      const access_token = object_token.accessToken;
-      this.userService.getCurrentUser(access_token).subscribe(data => {
-        this.user = data;
-        if (this.user.firstName != null && this.user.lastName != null) {
-          this.haveName = true;
-        }
-      });
     }
-    else {
+    else{
       console.log('not authorize');
       this.router.navigate(['/login']);
     }
+
   }
 
   logOutOnclick() {
@@ -60,7 +50,11 @@ export class ChatComponent implements OnInit {
   formAddGroup() {
     this.openAddGroup = !this.openAddGroup;
   }
-  openPopup(){
+  clickSearching(){
+    this.isSearching = true;
     this.popup = !this.popup
+  }
+  outSearching(){
+    this.isSearching = false;
   }
 }

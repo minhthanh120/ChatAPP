@@ -1,7 +1,7 @@
-<div  id="menu" class="z-10 absolute mt-3 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-fit border">
+<div  id="menu" class="z-10 absolute mt-3 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-fit border animate-fade animate-once animate-delay-400 animate-ease-out">
     <a href="/user" class="py-3 text-sm text-gray-900">
-      <!-- <p *ngIf="haveName" class="font-medium mx-4">{{user["firstName"]+" "+user["lastName"]}}</p> -->
-      <!-- <p class="truncate mx-4">{{user["email"]}}</p> -->
+      <p *ngIf="haveName" class="font-medium mx-4 pt-2">{{user["firstName"]+" "+user["lastName"]}}</p>
+      <p class="truncate mx-4 pt-1">{{user["email"]}}</p>
     </a>
     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
       <li>
@@ -15,6 +15,6 @@
       </li>
     </ul>
     <div class="py-2">
-      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Sign out</a>
+      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" (click)="logOutOnclick()" >Sign out</a>
     </div>
 </div>

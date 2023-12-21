@@ -1,5 +1,5 @@
 <div
-    class="flex flex-col h-[calc(100%-5rem)] overflow-y-hidden hover:overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
+    class="flex flex-col h-[calc(100%-5rem)] overflow-hidden hover:overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
     <div class="flex justify-center">
         <div *ngIf="spinnerService.visibility | async" class="w-full flex justify-center animate-spin">
             <svg class="w-8 h-8" width="590" height="590" viewBox="0 0 590 590" fill="none"
@@ -31,21 +31,21 @@
                             class="absolute indicator h-8 my-auto top-0 bottom-0 left-0 rounded-full bg-white shadow-md">
                         </div>
                         <button role="tab" aria-selected="true" aria-controls="panel-1" id="tab-1" tabindex="0"
-                            class="relative block h-9 px-4 tab rounded-full  font-bold">
+                            class="relative block h-9 px-4 tab rounded-full font-bold" (click)="switchTab($event)">
                             <span class="text-gray-800">Contact</span>
                         </button>
-                        <button role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2" tabindex="-1"
+                        <button role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2" tabindex="-1" (click)="switchTab($event)"
                             class="relative block h-9 px-4 tab rounded-full">
                             <span class="text-gray-800">Group 1</span>
                         </button>
-                        <button role="tab" aria-selected="false" aria-controls="panel-3" id="tab-3" tabindex="-1"
+                        <button role="tab" aria-selected="false" aria-controls="panel-3" id="tab-3" tabindex="-1" (click)="switchTab($event)"
                             class="relative block h-9 px-4 tab rounded-full">
                             <span class="text-gray-800">Group 2</span>
                         </button>
                     </div>
                 </div>
                 <div class="relative ">
-                    <div role="tabpanel" id="panel-1" class="tab-panel transition duration-300">
+                    <div role="tabpanel" id="panel-1" class="transition duration-300" [ngClass]="compareTab('tab-1')? 'animate-fade-right animate-once animate-delay-[300ms]':' tab-panel absolute w-full top-0 invisible opacity-0 tab-panel hidden '">
                         <ul class="mt-auto divide-y divide-gray-200" id="users">
                             <li id="user1" class="p-2 hover:bg-gray-100">
                                 <a href="#" class="flex flex-row ">
@@ -101,7 +101,7 @@
                         </ul>
                     </div>
                     <div role="tabpanel" id="panel-2"
-                        class="absolute w-full top-0 invisible opacity-0 tab-panel transition duration-300 hidden">
+                        class=" transition duration-300 " [ngClass]="compareTab('tab-2')? 'animate-fade-right animate-once animate-delay-[300ms]':'tab-panel absolute w-full top-0 invisible opacity-0 tab-panel hidden'">
                         <ul class="mt-auto divide-y divide-gray-200" id="users">
                             <li id="user1" class="p-2 hover:bg-gray-100">
                                 <a [routerLink]="['/message/1234']" class="flex flex-row ">
@@ -154,7 +154,7 @@
                         </ul>
                     </div>
                     <div role="tabpanel" id="panel-3"
-                        class="absolute w-full top-0 invisible opacity-0 tab-panel transition duration-300 hidden">
+                        class="transition duration-300" [ngClass]="compareTab('tab-3')? ' animate-fade-right animate-once animate-delay-[300ms]':'tab-panel absolute w-full top-0 invisible opacity-0 tab-panel hidden'">
                         <ul class="mt-auto divide-y divide-gray-200" id="users">
 
                             <li id="user1" class="p-2 hover:bg-gray-100">
